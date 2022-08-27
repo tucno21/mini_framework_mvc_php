@@ -16,6 +16,17 @@ class HomeController extends Controller
             'description' => 'publicaciones de la web',
         ];
 
+
+        // session()->set('home', $data);
+        // session()->set('user', $data);
+
+        // d(session()->get('user'));
+        d(session()->all());
+
+        // session()->remove('user');
+        // session()->flush();
+
+
         return view('home/index', [
             'data' => $data,
         ]);

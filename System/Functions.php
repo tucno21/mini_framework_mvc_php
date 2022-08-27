@@ -1,5 +1,6 @@
 <?php
 
+use System\Session;
 use System\RenderView;
 
 /**
@@ -94,5 +95,26 @@ if (!function_exists('view')) {
         } else {
             echo "Upsss... escriba una nombre o ruta/nombre para renderizar la vista";
         }
+    }
+}
+
+
+if (!function_exists('session')) {
+    /**
+     * Instaciar Class Session
+     */
+    function session()
+    {
+        return new Session;
+    }
+}
+
+if (!function_exists('auth')) {
+    /**
+     * Instaciar Class Session
+     */
+    function auth()
+    {
+        return new Session;
     }
 }
