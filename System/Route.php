@@ -2,6 +2,7 @@
 
 namespace System;
 
+use Throwable;
 use System\Request;
 use System\RenderView;
 use System\ResponseHTTP;
@@ -72,8 +73,8 @@ class Route
         $callback = self::searchRoutes();
 
         /**
-         * conprueba si el valor es un string get(clave, valor);
-         * $routes->get('/', "Desde la url principal");
+         * comprueba si el param2 es un string get(param1, param2);
+         * Route::get('/login', "Desde la url principal");
          */
         if (is_string($callback)) {
             echo 'es solo un string';
@@ -83,11 +84,38 @@ class Route
         /**
          * cuando los pathUrl no existe en el array de rutas
          * error 404
+         * $callback = null
          */
         if ($callback == null) {
             self::$responseHTTP->setStatusCode(404);
             echo self::$renderView->render('error/404');
             exit;
+        }
+
+        /**
+         * comprueba si el param2 es un array get(param1, param2);
+         * Route::get('/login', [AuthController::class, 'login']);
+         */
+        if (is_array($callback)) {
+            //verificar si la clase existe
+            try {
+                //[AuthController::class, 'login']
+                $callback[0] = new $callback[0]; //convierte el primer elemento en objeto class
+                //$callback = [object(App\Controller\Auth\AuthController), "login"]
+
+                //comprobar si existe un metodo de una clase
+                if (method_exists($callback[0], $callback[1])) {
+                    //ejeucta el metodo de la clase
+                    return call_user_func($callback, new static);
+                } else {
+                    echo 'el metodo "' . $callback[1] . '" no existe de la clase ' . $callback[0];
+                }
+            } catch (Throwable $t) {
+                echo "la clase " . $callback[0] . " no existe, compruebe si redacto correctamente en web.php";
+                echo '<br>';
+                echo $t->getMessage();
+                exit;
+            }
         }
     }
 
