@@ -3,6 +3,8 @@
 namespace System;
 
 use System\Request;
+use System\RenderView;
+use System\ResponseHTTP;
 
 
 /**
@@ -23,6 +25,14 @@ class Route
      * instanciando el objeto Request
      */
     public static Request $request;
+    /**
+     * instanciando el objeto responseHTTP
+     */
+    public static ResponseHTTP $responseHTTP;
+    /**
+     * instanciando el objeto RenderView
+     */
+    public static RenderView $renderView;
 
     /**
      * recibe el metodo  GET, el parametro de la url y el controlador o funcion
@@ -48,6 +58,8 @@ class Route
     public static function run()
     {
         self::$request = new Request();
+        self::$responseHTTP = new ResponseHTTP();
+        self::$renderView = new RenderView();
         return self::executeRoutes();
     }
 
@@ -58,7 +70,25 @@ class Route
     protected static function executeRoutes()
     {
         $callback = self::searchRoutes();
-        return $callback;
+
+        /**
+         * conprueba si el valor es un string get(clave, valor);
+         * $routes->get('/', "Desde la url principal");
+         */
+        if (is_string($callback)) {
+            echo 'es solo un string';
+            exit;
+        }
+
+        /**
+         * cuando los pathUrl no existe en el array de rutas
+         * error 404
+         */
+        if ($callback == null) {
+            self::$responseHTTP->setStatusCode(404);
+            echo self::$renderView->render('error/404');
+            exit;
+        }
     }
 
     /**
