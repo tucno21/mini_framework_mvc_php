@@ -11,6 +11,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        echo 'desde el controlador : ' . __CLASS__;
+        $data = [
+            'title' => 'home',
+            'description' => 'publicaciones de la web',
+        ];
+
+        return view('home/index', [
+            'data' => $data,
+        ]);
     }
 }

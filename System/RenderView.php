@@ -13,10 +13,10 @@ class RenderView
      * @param string carpeta/archivo
      * @param array valores o array enviados desde la vista
      */
-    public function render(string $view, array $data = [])
+    public static function render(string $view, array $data = [])
     {
         //almacena la vista en una variable
-        $content = $this->renderOnlyView($view, $data);
+        $content = Self::renderOnlyView($view, $data);
 
         //envia la vista al navegador
         include_once  'printView.php';
@@ -25,7 +25,7 @@ class RenderView
     /**
      * renderiza la vista desde el controlador
      */
-    protected function renderOnlyView(string $view,  array $data)
+    protected static function renderOnlyView(string $view,  array $data)
     {
         foreach ($data as $key => $value) {
             //$$ genrera una variable dinamica
