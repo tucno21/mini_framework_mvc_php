@@ -1,5 +1,6 @@
 <?php
 
+use System\Route;
 use System\Session;
 use System\RenderView;
 
@@ -116,5 +117,15 @@ if (!function_exists('auth')) {
     function auth()
     {
         return new Session;
+    }
+}
+
+if (!function_exists('route')) {
+    /**
+     * funcion para redireccionar a otra web usando el nombre de la ruta
+     */
+    function route(string $route)
+    {
+        return Route::route($route);
     }
 }

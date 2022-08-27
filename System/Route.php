@@ -36,12 +36,20 @@ class Route
     public static RenderView $renderView;
 
     /**
+     * nombre de las rutas
+     */
+    protected static array $nameUrl = [];
+    protected static array $nameRoute = [];
+
+    /**
      * recibe el metodo  GET, el parametro de la url y el controlador o funcion
      * del archivo App/Config/Routes.php
      */
     public static function get($url, $controller)
     {
+        array_push(self::$nameUrl, $url);
         self::$getRoutes[$url] = $controller;
+        return new static;
     }
 
     /**
@@ -51,6 +59,7 @@ class Route
     public static function post($url, $controller)
     {
         self::$postRoutes[$url] = $controller;
+        return new static;
     }
 
     /**
@@ -151,5 +160,32 @@ class Route
         }
 
         return $sendRoute;
+    }
+
+    /**
+     * nombre de las rutas
+     */
+    public static function name(string $name)
+    {
+        foreach (self::$nameUrl as $key => $value) {
+            //agrega el nombre de la ruta
+            self::$nameUrl[$name] = $value;
+        }
+
+        //array_unique elimina los valores repetidos
+        $data = array_unique(self::$nameUrl);
+        //array_diff_key elimina los valores repetidos
+        self::$nameRoute = array_diff_key(self::$nameUrl, $data);
+    }
+
+    public static function route(string $route)
+    {
+        if (isset(self::$nameRoute[$route])) {
+            $link = base_url . self::$nameRoute[$route];
+            return  $link;
+        } else {
+            echo 'no existe la ruta web para el nombre ' . $route;
+            exit;
+        }
     }
 }

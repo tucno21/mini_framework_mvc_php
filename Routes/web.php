@@ -10,8 +10,8 @@ use App\Controller\FrontView\HomeController;
 require_once dirname(__DIR__) . '/System/Autoload.php';
 
 //  FrontView
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // autenticacion
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
