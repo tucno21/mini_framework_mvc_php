@@ -45,6 +45,12 @@ define('DIR_PUBLIC', $_SERVER['DOCUMENT_ROOT']);
 define('DIR_APP', dirname(__DIR__) . '/App');
 
 /**
+ * como enviar los resultados array u obejeto
+ * no determina para MODEL
+ */
+define('RESULT_TYPE', $resultType);
+
+/**
  * obtener la ruta web de la aplicacion sin "/"
  */
 if (!function_exists('last_char')) {

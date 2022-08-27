@@ -32,3 +32,9 @@ $imageFolder = $_ENV['FOLDER_IMAGE'];
  */
 
 date_default_timezone_set($_ENV['TIME_ZONE']);
+
+/**
+ * definir el tipo de resultado de la consulta
+ * 'array' o 'object'
+ */
+$resultType = 'object';
