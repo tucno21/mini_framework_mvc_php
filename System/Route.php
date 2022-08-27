@@ -105,7 +105,7 @@ class Route
 
                 //comprobar si existe un metodo de una clase
                 if (method_exists($callback[0], $callback[1])) {
-                    //ejeucta el metodo de la clase
+                    //ejecuta el metodo de la clase
                     return call_user_func($callback, new static);
                 } else {
                     echo 'el metodo "' . $callback[1] . '" no existe de la clase ' . $callback[0];
@@ -116,6 +116,15 @@ class Route
                 echo $t->getMessage();
                 exit;
             }
+        }
+
+        /**
+         * comprueba si el param2 es un funcion get(param1, param2);
+         * Route::get('/login', function () { echo 'desde la funcion';});
+         */
+        if (is_callable($callback)) {
+            //ejecuta la funcion
+            return call_user_func($callback, new static);
         }
     }
 

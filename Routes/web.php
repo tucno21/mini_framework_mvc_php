@@ -14,4 +14,8 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/funcion', function () {
+    return 'es una funcion';
+});
+
 dd(Route::run());
