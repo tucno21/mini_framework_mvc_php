@@ -113,6 +113,8 @@ class Route
             } catch (Throwable $t) {
                 echo "la clase " . $callback[0] . " no existe, compruebe si redacto correctamente en web.php";
                 echo '<br>';
+                echo 'o asegurese de haber importado la clase en el archivo web.php';
+                echo '<br>';
                 echo $t->getMessage();
                 exit;
             }
