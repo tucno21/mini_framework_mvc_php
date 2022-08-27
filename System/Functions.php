@@ -2,6 +2,7 @@
 
 use System\Route;
 use System\Session;
+use System\Redirect;
 use System\RenderView;
 
 /**
@@ -124,8 +125,18 @@ if (!function_exists('route')) {
     /**
      * funcion para redireccionar a otra web usando el nombre de la ruta
      */
-    function route(string $route)
+    function route(string $nameRoute)
     {
-        return Route::route($route);
+        return Route::route($nameRoute);
+    }
+}
+
+/**
+ * funcion para  redireccionamiento a otra vista con parametros
+ */
+if (!function_exists('redirect')) {
+    function redirect(string $pathUrl = '', array $dataView = [])
+    {
+        return Redirect::redirect($pathUrl, $dataView);
     }
 }

@@ -2,12 +2,17 @@
 
 namespace System;
 
+use System\Request;
+
 /**
  * renderizar las vistas
  */
 
 class RenderView
 {
+    // private static Request $request;
+    private static Request $request;
+
     /**
      * enviar el contenido de la vista
      * @param string carpeta/archivo
@@ -15,6 +20,9 @@ class RenderView
      */
     public static function render(string $view, array $data = [])
     {
+        self::initClass();
+        $data = self::dataRedirect($data);
+
         //almacena la vista en una variable
         $content = Self::renderOnlyView($view, $data);
 
@@ -29,7 +37,7 @@ class RenderView
     {
         foreach ($dynamicVariable as $key => $value) {
             //$$ genrera una variable dinamica
-            $$key = $value;
+            $$key = RESULT_TYPE === 'array' ? (array)$value : (object)$value;
         }
 
         //ruta del archivo de la renderizacion de la vista
@@ -44,5 +52,39 @@ class RenderView
         } else {
             echo "Upsss... No se encontro el archivo para renderizar, verifica que has creado el archivo o que el nombre sea correcto " . $path;
         }
+    }
+
+    /**
+     * instancia la clase Request
+     */
+    private static function initClass()
+    {
+        self::$request = new Request();
+    }
+
+    private static function dataRedirect(array $data = [])
+    {
+        if (session()->has('renderView')) {
+            //traer datos de la session renderView
+            $dataRedirect = (array)auth()->get('renderView');
+            $nameKey = array_keys($dataRedirect);
+            //agregar a $data
+            $data[$nameKey[0]] = $dataRedirect[$nameKey[0]];
+
+            //carputar parte del URL actual y guardar en una session
+            if (!session()->has('reserveRoute')) {
+                $paramUrl = self::$request->getPath();
+                session()->set('reserveRoute', [$paramUrl]);
+            }
+        }
+
+        //si cambia la ruta actual, eliminar la session
+        $sessionLInk = (array)auth()->get('reserveRoute');
+        if ($sessionLInk[0] !== self::$request->getPath()) {
+            session()->remove('renderView');
+            session()->remove('reserveRoute');
+        }
+
+        return $data;
     }
 }

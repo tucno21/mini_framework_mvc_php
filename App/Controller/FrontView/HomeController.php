@@ -16,8 +16,12 @@ class HomeController extends Controller
             'description' => 'publicaciones de la web',
         ];
 
-        return view('home/index', [
-            'data' => $data,
+        // return view('home/index', [
+        //     'data' => $data,
+        // ]);
+
+        return redirect('/login', [
+            'data' => (object)$data,
         ]);
     }
 }

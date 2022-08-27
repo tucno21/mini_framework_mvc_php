@@ -9,13 +9,13 @@ class AuthController extends Controller
 {
     public function login()
     {
-        // $data = [
-        //     'title' => 'login',
-        //     'description' => 'login de la web',
-        // ];
+        $login = [
+            'title' => 'login',
+            'description' => 'login de la web',
+        ];
 
         return view('auth/login', [
-            // 'data' => $data,
+            'login' => $login,
         ]);
     }
 
