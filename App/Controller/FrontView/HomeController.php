@@ -16,8 +16,19 @@ class HomeController extends Controller
             'description' => 'publicaciones de la web',
         ];
 
+        // session()->set('user', $data);
+
+        session()->flash('message', 'hola mundo');
+
+        // d(session()->get('user'));
+        // d(session()->get('message'));
+
+        d(session()->has('message'));
+
+        // d(session()->all());
+
         // return view('home/index', [
-        //     'data' => $data,
+        //     // 'data' => $data,
         // ]);
 
         return redirect()->route('login', [

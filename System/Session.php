@@ -9,6 +9,7 @@ namespace System;
 class Session
 {
     const SESSION = 'catuva';
+    const FLASH_SESSION = 'flashSession';
 
     public function __construct()
     {
@@ -42,6 +43,11 @@ class Session
      */
     public function get(string $key = '')
     {
+        if (isset($_SESSION[self::FLASH_SESSION])) {
+            if (array_key_exists($key, $_SESSION[self::FLASH_SESSION])) {
+                return $_SESSION[self::FLASH_SESSION][$key];
+            }
+        }
         return $this->sessionGet($key);
     }
 
@@ -83,6 +89,12 @@ class Session
      */
     public function has(string $key = ''): bool
     {
+        if (isset($_SESSION[self::FLASH_SESSION])) {
+            if (array_key_exists($key, $_SESSION[self::FLASH_SESSION])) {
+                return isset($_SESSION[self::FLASH_SESSION][$key]);
+            }
+        }
+
         if (empty($key)) {
             return isset($_SESSION[self::SESSION]);
         } else {
@@ -140,5 +152,13 @@ class Session
     public function flush()
     {
         session_destroy();
+    }
+
+    /**
+     * session flash
+     */
+    public function flash(string $key, string $value)
+    {
+        $_SESSION[self::FLASH_SESSION][$key] = $value;
     }
 }

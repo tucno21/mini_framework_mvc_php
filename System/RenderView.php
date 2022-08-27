@@ -28,6 +28,8 @@ class RenderView
 
         //envia la vista al navegador
         include_once  'printView.php';
+
+        self::removeSessionFlash();
     }
 
     /**
@@ -86,5 +88,12 @@ class RenderView
         }
 
         return $data;
+    }
+
+    private static function removeSessionFlash()
+    {
+        if (session()->has('flashSession')) {
+            session()->remove('flashSession');
+        }
     }
 }
