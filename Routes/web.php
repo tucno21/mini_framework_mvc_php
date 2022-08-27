@@ -5,4 +5,5 @@
  */
 require_once dirname(__DIR__) . '/System/Autoload.php';
 
-dd(APPDIR);
+// dd($_ENV['APP_URL']);
+dd(base_url);
