@@ -1,6 +1,7 @@
 <?php
 
 use System\Route;
+use App\Controller\Auth\AuthController;
 use App\Controller\FrontView\HomeController;
 
 /**
