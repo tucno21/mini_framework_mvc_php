@@ -25,9 +25,9 @@ class RenderView
     /**
      * renderiza la vista desde el controlador
      */
-    protected static function renderOnlyView(string $view,  array $data)
+    protected static function renderOnlyView(string $view,  array $dynamicVariable)
     {
-        foreach ($data as $key => $value) {
+        foreach ($dynamicVariable as $key => $value) {
             //$$ genrera una variable dinamica
             $$key = $value;
         }

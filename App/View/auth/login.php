@@ -1,6 +1,6 @@
 <?php
-
-d($data);
-// d($_SESSION);
+if (isset($data)) {
+    d($data);
+}
 
 echo 'desde la vista auth/login';
