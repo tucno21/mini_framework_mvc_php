@@ -32,4 +32,22 @@ class Redirect
             header("Location: /$pathUrl");
         }
     }
+
+    /**
+     * redireccionar a otra web usando el nombre de la ruta
+     */
+    public static function route(string $nameRoute, array $dataView = [])
+    {
+        //buscar la ruta  con el nombre de la ruta en el array
+        $url = Route::route($nameRoute);
+        //separa la url principal en array
+        $data = explode(base_url, $url);
+
+        if (empty($dataView)) { //vacio true
+            header("Location: $data[1]");
+        } else {
+            session()->set('renderView', $dataView);
+            header("Location: $data[1]");
+        }
+    }
 }

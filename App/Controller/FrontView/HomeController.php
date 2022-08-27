@@ -20,8 +20,8 @@ class HomeController extends Controller
         //     'data' => $data,
         // ]);
 
-        return redirect('/login', [
-            'data' => (object)$data,
+        return redirect()->route('login', [
+            'data' => $data,
         ]);
     }
 }
