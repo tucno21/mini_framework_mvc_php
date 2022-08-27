@@ -50,4 +50,22 @@ class Redirect
             header("Location: $data[1]");
         }
     }
+
+    /**
+     * back
+     */
+    public static function back()
+    {
+        // header("Refresh:2; url=/");
+        header("Refresh:1");
+        return new static;
+    }
+
+    /**
+     * enviar mensaje flash
+     */
+    public static function with(string $key, string $value)
+    {
+        session()->flash($key, $value);
+    }
 }

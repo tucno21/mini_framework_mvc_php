@@ -16,23 +16,14 @@ class HomeController extends Controller
             'description' => 'publicaciones de la web',
         ];
 
-        // session()->set('user', $data);
+        $bool = false;
 
-        session()->flash('message', 'hola mundo');
-
-        // d(session()->get('user'));
-        // d(session()->get('message'));
-
-        d(session()->has('message'));
-
-        // d(session()->all());
-
-        // return view('home/index', [
-        //     // 'data' => $data,
-        // ]);
-
-        return redirect()->route('login', [
-            'data' => $data,
-        ]);
+        if ($bool) {
+            return redirect()->back()->with('message', 'hola mundo');
+        } else {
+            return view('home/index', [
+                // 'data' => $data,
+            ]);
+        }
     }
 }
