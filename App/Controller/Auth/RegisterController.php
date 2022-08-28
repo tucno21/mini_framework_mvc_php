@@ -9,7 +9,9 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('auth/register');
+        return view('auth/register', [
+            'title' => 'Register Mini Framework',
+        ]);
     }
 
     public function store()

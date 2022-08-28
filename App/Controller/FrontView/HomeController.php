@@ -17,7 +17,8 @@ class HomeController extends Controller
         ];
 
         return view('home/index', [
-            // 'data' => $data,
+            'data' => $data,
+            'title' => 'Home Mini Framework',
         ]);
     }
 }

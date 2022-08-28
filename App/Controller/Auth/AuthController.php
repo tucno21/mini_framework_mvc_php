@@ -15,7 +15,7 @@ class AuthController extends Controller
         ];
 
         return view('auth/login', [
-            'login' => $login,
+            'title' => 'Login Mini Framework',
         ]);
     }
 
