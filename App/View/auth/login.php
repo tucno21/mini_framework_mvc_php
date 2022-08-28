@@ -79,7 +79,7 @@
                         <?php endif; ?>
                     </div>
 
-                    <button class="w-90 btn btn-lg btn-primary mt-3" type="submit">Crear Cuenta</button>
+                    <button class="w-90 btn btn-lg btn-primary mt-3" type="submit">Iniciar Sesión</button>
                 </form>
 
                 <div class="checkbox mb-3">
