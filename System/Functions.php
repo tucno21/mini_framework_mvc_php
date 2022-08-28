@@ -154,10 +154,10 @@ if (!function_exists('back')) {
 /**
  * funcion para extender partes layout o vista
  */
-function extend(string $folderLayout)
+function ext(string $folderLayout)
 {
     //cambiar '.' por '/'
     $folderLayout = str_replace('.', '/', $folderLayout);
 
-    include_once DIR_APP . '/View/' . $folderLayout . '.php';
+    return DIR_APP . '/View/' . $folderLayout . '.php';
 }

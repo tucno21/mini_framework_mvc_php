@@ -1,4 +1,4 @@
-<?= extend('layout.head') ?>
+<?php include ext('layout.head') ?>
 
 <div class="container">
     <div class="form-signin w-100 m-auto text-center">
@@ -37,4 +37,4 @@
     </div>
 </div>
 
-<?= extend('layout.footer') ?>
+<?php include ext('layout.footer') ?>

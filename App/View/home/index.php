@@ -1,4 +1,4 @@
-<?= extend('layout.head') ?>
+<?php include ext('layout.head') ?>
 <div class="container">
     <div class="bg-success bg-gradient bg-opacity-25 p-5 rounded">
         <div class="col-sm-8 mx-auto">
@@ -8,4 +8,4 @@
         </div>
     </div>
 </div>
-<?= extend('layout.footer') ?>
+<?php include ext('layout.footer') ?>
