@@ -20,5 +20,3 @@ require_once 'Functions.php';
  * para la base de datos
  */
 ConnectDB::dataBase($db_host, $db_user, $db_pass, $db_name, $db_charset);
-$database = ConnectDB::conn();
-dd($database);
