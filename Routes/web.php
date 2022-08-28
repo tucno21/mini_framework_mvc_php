@@ -24,3 +24,4 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // BackView
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/create', [DashboardController::class, 'create'])->name('dashboard.create');

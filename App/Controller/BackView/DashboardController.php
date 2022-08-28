@@ -19,4 +19,10 @@ class DashboardController extends Controller
             'title' => 'Dashboard',
         ]);
     }
+
+    public function create()
+    {
+        echo 'desde create';
+        exit;
+    }
 }
