@@ -60,20 +60,55 @@ class DashboardController extends Controller
 
     public function edit()
     {
-        //return view('folder/file', [
-        //   'var' => 'es una variable',
-        //]);
+        $id = $this->request()->getInput();
+
+        if (empty((array)$id)) {
+            $product = null;
+        } else {
+            $product = Productos::first($id->id);
+        }
+
+        return view('dashboard/edit', [
+            'title' => 'editar productos',
+            'data' => $product
+        ]);
     }
 
     public function update()
     {
         $data = $this->request()->getInput();
-        //return redirect()->route('nameRoute');
+
+
+        $valid = $this->validate($data, [
+            'producto' => 'required',
+            'descripcion' => 'required|text',
+            'precio' => 'required',
+            'user_id' => 'required',
+            'id' => 'required'
+        ]);
+
+        if ($valid !== true) {
+            return back()->route('dashboard.edit', [
+                'err' =>  $valid,
+                'data' => $data,
+            ]);
+        } else {
+            // dd($data);
+            session()->remove('renderView');
+            session()->remove('reserveRoute');
+
+            Productos::update($data->id, $data);
+
+            return redirect()->route('dashboard');
+        }
     }
 
     public function destroy()
     {
         $data = $this->request()->getInput();
-        // return redirect()->route('nameRoute');
+        // dd((int)$data->id);
+        $result = Productos::delete((int)$data->id);
+        // dd($result);
+        return redirect()->route('dashboard');
     }
 }
