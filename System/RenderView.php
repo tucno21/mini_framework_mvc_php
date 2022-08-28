@@ -73,9 +73,10 @@ class RenderView
         if (session()->has('renderView')) {
             //traer datos de la session renderView
             $dataRedirect = (array)auth()->get('renderView');
-            $nameKey = array_keys($dataRedirect);
-            //agregar a $data
-            $data[$nameKey[0]] = $dataRedirect[$nameKey[0]];
+
+            foreach ($dataRedirect as $key => $value) {
+                $data[$key] = $value;
+            }
 
             //carputar parte del URL actual y guardar en una session
             if (!session()->has('reserveRoute')) {
@@ -90,7 +91,6 @@ class RenderView
             session()->remove('renderView');
             session()->remove('reserveRoute');
         }
-
         return $data;
     }
 
