@@ -37,7 +37,7 @@ FOLDER_IMAGE=img
 TIME_ZONE=America/Lima
 ```
 
-si el archivo .env no conceta Buscar y modificar (App/Config/App.php)
+si el archivo .env no connecta Buscar y modificar (App/Config/App.php)
 
 ```php
 $baseURL = 'www.myweb.com';
@@ -56,8 +56,8 @@ Agregar rutas para la web (Routes/web.php)
 
 ```php
 //ruta o parametro del link, nombre del controlador, nombre del metodo
-Route::get('/', [Controller::class, 'index']);
-Route::get('/login', [Controller::class, 'login']);
+Route::get('/', [Controller::class, 'index'])->name('home');
+Route::get('/login', [Controller::class, 'login'])->('login');
 Route::post('/login', [Controller::class, 'login']);
 ```
 
@@ -288,6 +288,8 @@ SESSION CON CLAVE Y SUS DATOS(array/objeto)
 ```php
 //crear session
 auth()->set(string $key, array|object  $value);
+//crear sesion que se eliminar en el sigueinte refresco
+session()->flash(string $key, string $content)
 
 //formas de invocar
 auth()->get(string $key);
