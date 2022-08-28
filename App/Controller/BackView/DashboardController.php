@@ -3,6 +3,7 @@
 namespace App\Controller\BackView;
 
 use System\Controller;
+use App\Model\Productos;
 
 
 class DashboardController extends Controller
@@ -15,8 +16,11 @@ class DashboardController extends Controller
 
     public function index()
     {
+        $product = Productos::all();
+
         return view('dashboard/index', [
             'title' => 'Dashboard',
+            'product' => $product
         ]);
     }
 
