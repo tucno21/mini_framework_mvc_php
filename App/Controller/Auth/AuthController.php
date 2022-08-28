@@ -21,5 +21,7 @@ class AuthController extends Controller
 
     public function store()
     {
+        $data = $this->request()->getInput();
+        dd($data);
     }
 }

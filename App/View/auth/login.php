@@ -46,17 +46,17 @@
 
         <div class="container">
             <div class="form-signin w-100 m-auto text-center">
-                <form>
+                <form action="<?= route('login') ?>" method="POST">
                     <img class="mb-4" src="https://assets.stickpng.com/thumbs/58481791cef1014c0b5e4994.png" alt="" width="72" height="65">
                     <h1 class="h3 mb-3 fw-normal">Login</h1>
 
                     <div class="form-floating mb-2">
-                        <input type="email" class="form-control" id="email">
+                        <input name="email" type="email" class="form-control" id="email">
                         <label for="email">Email</label>
                     </div>
 
                     <div class="form-floating">
-                        <input type="password" class="form-control is-invalid" id="password">
+                        <input name="password" type="password" class="form-control is-invalid" id="password">
                         <label for="password">Password</label>
                     </div>
 
