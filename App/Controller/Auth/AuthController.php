@@ -2,6 +2,7 @@
 
 namespace App\Controller\Auth;
 
+use App\Model\Auth;
 use System\Controller;
 
 
@@ -33,6 +34,12 @@ class AuthController extends Controller
                 'err' =>  $valid,
                 'data' => $data,
             ]);
+        } else {
+            $user = Auth::select('id, email, name')->where('email', $data->email)->get();
+
+            auth()->attempt($user);
+
+            return redirect()->route('home');
         }
     }
 }
