@@ -5,18 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Carlos Tucno vasquez">
-    <meta name="generator" content="Hugo 0.98.0">
     <title>MIni Framework</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        body {
+            /* min-height: 75rem; */
+            padding-top: 4.5rem;
+        }
     </style>
 </head>
 
 <body>
     <main>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" aria-label="Fourth navbar example">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">Mini Framework mvc Php</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +39,7 @@
             </div>
         </nav>
 
-        <div class="container mt-4">
+        <div class="container">
             <div class="bg-success bg-gradient bg-opacity-25 p-5 rounded">
                 <div class="col-sm-8 mx-auto">
                     <h1 class="text-center">Bienvenido</h1>

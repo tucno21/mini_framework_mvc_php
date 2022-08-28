@@ -5,26 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Carlos Tucno vasquez">
-    <meta name="generator" content="Hugo 0.98.0">
     <title>MIni Framework</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        .form-signin {
-            max-width: 330px;
-            padding: 15px;
+        body {
+            /* min-height: 75rem; */
+            padding-top: 4.5rem;
         }
 
-        .form-signin .form-floating:focus-within {
-            z-index: 2;
+        .form-signin {
+            max-width: 400px;
+            padding: 15px;
         }
     </style>
 </head>
 
 <body>
     <main>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" aria-label="Fourth navbar example">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">Mini Framework mvc Php</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,13 +44,13 @@
             </div>
         </nav>
 
-        <div class="container mt-4">
+        <div class="container">
             <div class="form-signin w-100 m-auto text-center">
                 <form>
                     <img class="mb-4" src="https://assets.stickpng.com/thumbs/58481791cef1014c0b5e4994.png" alt="" width="72" height="65">
                     <h1 class="h3 mb-3 fw-normal">Login</h1>
 
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-2">
                         <input type="email" class="form-control" id="email">
                         <label for="email">Email</label>
                     </div>
