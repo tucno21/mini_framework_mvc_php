@@ -39,13 +39,13 @@ class AuthController extends Controller
 
             auth()->attempt($user);
 
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }
     }
 
     public function logout()
     {
         auth()->logout();
-        return $this->redirect('/');
+        return redirect()->route('home');
     }
 }

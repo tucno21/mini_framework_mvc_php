@@ -7,6 +7,7 @@
 namespace System;
 
 use System\Request;
+use System\Middleware;
 use System\Validation\Validation;
 
 class Controller
@@ -27,5 +28,14 @@ class Controller
         $mm = new Validation;
 
         return $mm->validate($inputs, $rules);
+    }
+
+    /**
+     * un middleware que verifica si el usuario de tu aplicación está autenticado
+     */
+    protected function middleware(mixed $session, array $middleware)
+    {
+        $mw = new Middleware();
+        $mw->run($session, $middleware);
     }
 }
