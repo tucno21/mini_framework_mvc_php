@@ -2,6 +2,7 @@
 
 use System\Route;
 use App\Controller\Auth\AuthController;
+use App\Controller\Auth\RegisterController;
 use App\Controller\FrontView\HomeController;
 
 /**
@@ -13,5 +14,8 @@ require_once dirname(__DIR__) . '/System/Autoload.php';
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // autenticacion
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'store']);
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
