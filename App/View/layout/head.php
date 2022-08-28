@@ -19,6 +19,11 @@
             max-width: 400px;
             padding: 15px;
         }
+
+        .form-product {
+            max-width: 800px;
+            padding: 15px;
+        }
     </style>
 </head>
 

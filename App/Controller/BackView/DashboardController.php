@@ -26,14 +26,36 @@ class DashboardController extends Controller
 
     public function create()
     {
-        echo 'desde create';
-        exit;
+        return view('dashboard/create', [
+            'title' => 'crear productos',
+        ]);
     }
 
     public function store()
     {
         $data = $this->request()->getInput();
-        //return redirect()->route('nameRoute');
+
+        $valid = $this->validate($data, [
+            'producto' => 'required',
+            'descripcion' => 'required|text',
+            'precio' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        if ($valid !== true) {
+            return back()->route('dashboard.create', [
+                'err' =>  $valid,
+                'data' => $data,
+            ]);
+        } else {
+
+            session()->remove('renderView');
+            session()->remove('reserveRoute');
+
+            Productos::create($data);
+
+            return redirect()->route('dashboard');
+        }
     }
 
     public function edit()
