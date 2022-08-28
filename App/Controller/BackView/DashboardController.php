@@ -29,4 +29,29 @@ class DashboardController extends Controller
         echo 'desde create';
         exit;
     }
+
+    public function store()
+    {
+        $data = $this->request()->getInput();
+        //return redirect()->route('nameRoute');
+    }
+
+    public function edit()
+    {
+        //return view('folder/file', [
+        //   'var' => 'es una variable',
+        //]);
+    }
+
+    public function update()
+    {
+        $data = $this->request()->getInput();
+        //return redirect()->route('nameRoute');
+    }
+
+    public function destroy()
+    {
+        $data = $this->request()->getInput();
+        // return redirect()->route('nameRoute');
+    }
 }
