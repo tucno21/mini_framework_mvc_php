@@ -56,7 +56,6 @@ class Request
         }
         if ($this->isPost()) {
             foreach ($_POST as $key => $value) {
-                dd($value);
                 $data[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
