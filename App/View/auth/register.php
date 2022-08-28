@@ -26,7 +26,7 @@
     <main>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" aria-label="Fourth navbar example">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">Mini Framework mvc Php</a>
+                <a class="navbar-brand" href="<?= route('home') ?>">Mini Framework mvc Php</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -34,10 +34,10 @@
                 <div class="collapse navbar-collapse" id="navbarsExample04">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
+                            <a class="nav-link" href="<?= route('login') ?>">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/register">Register</a>
+                            <a class="nav-link" href="<?= route('register') ?>">Register</a>
                         </li>
                     </ul>
                 </div>
@@ -75,7 +75,7 @@
 
                 <div class="checkbox mb-3">
                     <p class="mt-5 mb-3 text-muted">si no tienes una cuenta
-                        <a href="/login">Iniciar Sesión</a>
+                        <a href="<?= route('login') ?>">Iniciar Sesión</a>
                     </p>
                 </div>
             </div>
