@@ -33,12 +33,21 @@
 
                 <div class="collapse navbar-collapse" id="navbarsExample04">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= route('login') ?>">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= route('register') ?>">Register</a>
-                        </li>
+                        <?php if (!auth()->has()) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= route('login') ?>">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= route('register') ?>">Register</a>
+                            </li>
+                        <?php else : ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= route('dashboard') ?>">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= route('logout') ?>">Cerrar Sesión</a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
