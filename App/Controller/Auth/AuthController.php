@@ -30,7 +30,7 @@ class AuthController extends Controller
         ]);
 
         if ($valid !== true) {
-            return redirect()->route('login', [
+            return back()->route('login', [
                 'err' =>  $valid,
                 'data' => $data,
             ]);

@@ -140,3 +140,13 @@ if (!function_exists('redirect')) {
         return Redirect::redirect($pathUrl, $dataView);
     }
 }
+
+/**
+ * funcion para  redireccionamiento a otra vista con parametros
+ */
+if (!function_exists('back')) {
+    function back(string $pathUrl = '', array $dataView = [])
+    {
+        return Redirect::redirect($pathUrl, $dataView);
+    }
+}
