@@ -11,6 +11,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+        }
+
+        .form-signin .form-floating:focus-within {
+            z-index: 2;
+        }
     </style>
 </head>
 
@@ -37,11 +45,38 @@
         </nav>
 
         <div class="container mt-4">
-            <div class="bg-success bg-gradient bg-opacity-25 p-5 rounded">
-                <div class="col-sm-8 mx-auto">
-                    <h1 class="text-center">Bienvenido</h1>
-                    <p>Este es la base del un mini framework basado en php 8.1 revise las funciones que tiene en el siguiente enlace.</p>
-                    <a target="_blank" href="https://github.com/tucno21/mini_framework_mvc_php">Repositorio github</a>
+            <div class="form-signin w-100 m-auto text-center">
+                <form>
+                    <img class="mb-4" src="https://assets.stickpng.com/thumbs/58481791cef1014c0b5e4994.png" alt="" width="72" height="65">
+                    <h1 class="h3 mb-3 fw-normal">Registrar</h1>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name">
+                        <label for="name">Nombre</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email">
+                        <label for="email">Email</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control is-invalid" id="password">
+                        <label for="password">Password</label>
+                    </div>
+
+                    <div class="form-floating">
+                        <input type="password" class="form-control is-invalid" id="re_password">
+                        <label for="re_password">Repetir Password</label>
+                    </div>
+
+                    <button class="w-90 btn btn-lg btn-primary mt-3" type="submit">Registrarme</button>
+                </form>
+
+                <div class="checkbox mb-3">
+                    <p class="mt-5 mb-3 text-muted">si no tienes una cuenta
+                        <a href="/login">Iniciar Sesión</a>
+                    </p>
                 </div>
             </div>
         </div>

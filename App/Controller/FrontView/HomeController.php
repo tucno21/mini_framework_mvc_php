@@ -16,14 +16,8 @@ class HomeController extends Controller
             'description' => 'publicaciones de la web',
         ];
 
-        $bool = false;
-
-        if ($bool) {
-            return redirect()->back()->with('message', 'hola mundo');
-        } else {
-            return view('home/index', [
-                // 'data' => $data,
-            ]);
-        }
+        return view('home/index', [
+            // 'data' => $data,
+        ]);
     }
 }
