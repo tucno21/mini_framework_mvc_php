@@ -150,3 +150,14 @@ if (!function_exists('back')) {
         return Redirect::redirect($pathUrl, $dataView);
     }
 }
+
+/**
+ * funcion para extender partes layout o vista
+ */
+function extend(string $folderLayout)
+{
+    //cambiar '.' por '/'
+    $folderLayout = str_replace('.', '/', $folderLayout);
+
+    include_once DIR_APP . '/View/' . $folderLayout . '.php';
+}
