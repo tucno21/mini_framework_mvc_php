@@ -17,6 +17,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // autenticacion
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'store']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
