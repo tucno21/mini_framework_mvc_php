@@ -39,7 +39,11 @@ class RenderView
     {
         foreach ($dynamicVariable as $key => $value) {
             //$$ genrera una variable dinamica
-            $$key = RESULT_TYPE === 'array' ? (array)$value : (object)$value;
+            if (is_string($value) || is_bool($value) || is_numeric($value)) {
+                $$key = $value;
+            } else {
+                $$key = RESULT_TYPE === 'array' ? (array)$value : (object)$value;
+            }
         }
 
         //ruta del archivo de la renderizacion de la vista
