@@ -29,7 +29,7 @@
             <?php foreach ($product as $prod) : ?>
                 <tr>
                     <th scope="row"><?= $prod->id ?></th>
-                    <td><?= $prod->user_id ?></td>
+                    <td><?= $prod->name ?></td>
                     <td><?= $prod->producto ?></td>
                     <td><?= $prod->descripcion ?></td>
                     <td><?= $prod->precio ?></td>

@@ -16,7 +16,11 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $product = Productos::all();
+        // $product = Productos::all();
+        $product = Productos::select('productos.*', 'users.name')
+            ->join('users', 'productos.user_id', '=', 'users.id')
+            ->get();
+        // dd($product);
 
         return view('dashboard/index', [
             'title' => 'Dashboard',
