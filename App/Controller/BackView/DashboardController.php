@@ -20,7 +20,11 @@ class DashboardController extends Controller
         $product = Productos::select('productos.*', 'users.name')
             ->join('users', 'productos.user_id', '=', 'users.id')
             ->get();
-        // dd($product);
+
+        //cuando viene un solo objeto
+        if (is_object($product)) {
+            $product = [$product];
+        }
 
         return view('dashboard/index', [
             'title' => 'Dashboard',
