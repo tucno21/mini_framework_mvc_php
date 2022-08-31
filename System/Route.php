@@ -6,6 +6,7 @@ use Throwable;
 use System\Request;
 use System\RenderView;
 use System\ResponseHTTP;
+use System\CronosException;
 
 
 /**
@@ -187,8 +188,7 @@ class Route
             $link = base_url . self::$nameRoute[$route];
             return  $link;
         } else {
-            echo 'no existe la ruta web para el nombre ' . $route;
-            exit;
+            throw new CronosException('no se encontro la ruta web para el: route(' . $route . ')');
         }
     }
 }

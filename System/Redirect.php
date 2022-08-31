@@ -7,6 +7,7 @@
 namespace System;
 
 use System\Route;
+use System\CronosException;
 
 class Redirect
 {
@@ -39,15 +40,19 @@ class Redirect
     public static function route(string $nameRoute, array $dataView = [])
     {
         //buscar la ruta  con el nombre de la ruta en el array
-        $url = Route::route($nameRoute);
-        //separa la url principal en array
-        $data = explode(base_url, $url);
+        try {
+            $url = Route::route($nameRoute);
+            //separa la url principal en array
+            $data = explode(base_url, $url);
 
-        if (empty($dataView)) { //vacio true
-            header("Location: $data[1]");
-        } else {
-            session()->set('renderView', $dataView);
-            header("Location: $data[1]");
+            if (empty($dataView)) { //vacio true
+                header("Location: $data[1]");
+            } else {
+                session()->set('renderView', $dataView);
+                header("Location: $data[1]");
+            }
+        } catch (CronosException $e) {
+            echo $e->cronosMessage();
         }
     }
 
