@@ -57,7 +57,8 @@ Agregar rutas para la web (Routes/web.php)
 ```php
 //ruta o parametro del link, nombre del controlador, nombre del metodo
 Route::get('/', [Controller::class, 'index'])->name('home');
-Route::get('/login', [Controller::class, 'login'])->('login');
+//los nombres de la ruta solo en get - en post debe llevar a la misma ruta
+Route::get('/login', [Controller::class, 'login'])->name('login');
 Route::post('/login', [Controller::class, 'login']);
 ```
 
@@ -210,12 +211,11 @@ Model::where($colum, $operator, $valueColum)->orderBy($colum, $order)->first();
 resultdo de unir dos tablas (INNER JOIN)
 
 ```php
-//acepta 4 parametros, nombre de la otra tabla, nombre la columna que se relaciona con llave
-//operador a compara, nombre de la otra columna que se relaciona
-Model::join($nameAnotherTable, $nameColum, $operator, $valueColum);
+//acepta 4 parametros, (nombreOtraTabla, nombreTabla.columnaRelacion, operador, nombreOtraTabla.columnaRelacion
+Model::join($nameAnotherTable, $tableNamecolumnRelationship, $operator, $nameAnotherTablecolumnRelationship);
 
 //combinar con select y get
-Model::select($columns)->join($nameAnotherTable, $nameColum, $operator, $valueColum)->get();
+Model::select($columns)->join($nameAnotherTable, $tableNameColum, $operator, $nameAnotherNameColum)->get();
 ```
 
 Obtener resultados especiales
@@ -268,8 +268,8 @@ orderBy('email', 'asc');
 first(3);
 first('email', 'a@a.com');
 
-select('users.*', 'contacts.phone', 'orders.price');
-join('contacts', 'users.id', '=', 'contacts.user_id');
+User::select('users.*', 'contacts.phone', 'orders.price')
+        ->join('contacts', 'users.id', '=', 'contacts.user_id')->get();
 
 queryMod('SELECT * FROM users');
 ```
