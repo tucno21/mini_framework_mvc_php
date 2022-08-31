@@ -109,22 +109,25 @@ class Route
             //verificar si la clase existe
             try {
                 //[AuthController::class, 'login']
+                $class = $callback[0];
                 $callback[0] = new $callback[0]; //convierte el primer elemento en objeto class
                 //$callback = [object(App\Controller\Auth\AuthController), "login"]
-
+                // dd(method_exists($callback[0], $callback[1]));
                 //comprobar si existe un metodo de una clase
-                if (method_exists($callback[0], $callback[1])) {
-                    //ejecuta el metodo de la clase
+                try {
                     return call_user_func($callback, new static);
-                } else {
-                    echo 'el metodo "' . $callback[1] . '" no existe de la clase ' . $callback[0];
+                } catch (Throwable $th) {
+                    $mensaje = "El metodo  '" . $callback[1] . "' no existe en la clase " . $class;
+                    $archivo = $th->getFile();
+                    $line = $th->getLine();
+                    include_once 'mensajeThorwable.php';
+                    exit;
                 }
             } catch (Throwable $t) {
-                echo "la clase " . $callback[0] . " no existe, compruebe si redacto correctamente en web.php";
-                echo '<br>';
-                echo 'o asegurese de haber importado la clase en el archivo web.php';
-                echo '<br>';
-                echo $t->getMessage();
+                $mensaje = "la clase '" . $callback[0] . "' no existe, o asegurese de haber importado la clase en Routes/web.php";
+                $archivo = $t->getFile();
+                $line = $t->getLine();
+                include_once 'mensajeThorwable.php';
                 exit;
             }
         }
