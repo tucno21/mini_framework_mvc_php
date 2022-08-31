@@ -3,6 +3,7 @@
 namespace System;
 
 use System\Request;
+use System\CronosException;
 
 /**
  * renderizar las vistas
@@ -56,7 +57,7 @@ class RenderView
             //ob_get_clean devuelve el contenido de la vista
             return ob_get_clean();
         } else {
-            echo "Upsss... No se encontro el archivo para renderizar, verifica que has creado el archivo o que el nombre sea correcto " . $path;
+            throw new CronosException("Upsss... No se encontro la vista: view(" . $view . ")");
         }
     }
 

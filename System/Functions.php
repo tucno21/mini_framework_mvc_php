@@ -4,6 +4,7 @@ use System\Route;
 use System\Session;
 use System\Redirect;
 use System\RenderView;
+use System\CronosException;
 
 /**
  * funciones principales para toda la aplicacion
@@ -92,10 +93,13 @@ if (!function_exists('view')) {
      */
     function view(string $name, array $data = [])
     {
-        if (!empty($name)) {
+        //cambiar '.' por '/'
+        $name = str_replace('.', '/', $name);
+
+        try {
             return RenderView::render($name, $data);
-        } else {
-            echo "Upsss... escriba una nombre o ruta/nombre para renderizar la vista";
+        } catch (CronosException $e) {
+            echo $e->cronosMessage();
         }
     }
 }

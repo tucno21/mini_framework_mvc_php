@@ -16,7 +16,7 @@ class HomeController extends Controller
             'description' => 'publicaciones de la web',
         ];
 
-        return view('home/index', [
+        return view('home.index', [
             'data' => $data,
             'title' => 'Home Mini Framework',
         ]);
