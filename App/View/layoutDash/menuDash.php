@@ -8,7 +8,7 @@ $logoAdmin = '../public/logo/logo.png';
 
 //DATOS DEL USUARIO ADMIN
 $userName = session()->user()->name;
-
+// dd(session()->user());
 
 
 //MENU CERRAR O PERFIL DE ADMINISTRADOR
@@ -27,19 +27,19 @@ $linksSidebar = [
     [
         'mode' => 'menu',
         'text' => 'Dashboard',
-        'url'  => '/',
+        'url'  => route('dashboard'),
         'icon' => 'bi bi-speedometer2',
     ],
     [
         'mode' => 'menu',
         'text' => 'Usuarios',
-        'url'  => '/',
+        'url'  => route('users'),
         'icon' => 'bi bi-person-lines-fill',
     ],
     [
         'mode' => 'menu',
         'text' => 'Productos',
-        'url'  => '/users',
+        'url'  => route('products'),
         'icon' => 'bi bi-shop',
     ],
 ];
