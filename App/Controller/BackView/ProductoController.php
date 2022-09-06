@@ -27,7 +27,8 @@ class ProductoController extends Controller
         }
 
         return view('productos/index', [
-            'product' => $product
+            'product' => $product,
+            'titulo' => 'Dashboard productos',
         ]);
     }
 
@@ -35,6 +36,7 @@ class ProductoController extends Controller
     {
         return view('productos/create', [
             'title' => 'crear productos',
+            'titulo' => 'crear productos',
         ]);
     }
 
@@ -76,7 +78,7 @@ class ProductoController extends Controller
         }
 
         return view('productos/edit', [
-            'title' => 'editar productos',
+            'titulo' => 'editar productos',
             'data' => $product
         ]);
     }

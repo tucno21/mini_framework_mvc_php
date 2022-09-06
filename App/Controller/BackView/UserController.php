@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index', [
-            'var' => 'es una variable',
+            'titulo' => 'lista de usuarios',
         ]);
     }
 
