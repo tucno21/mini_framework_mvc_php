@@ -17,7 +17,7 @@ class Auth extends Model
     /**
      * nombre de la columnas de la tabla
      */
-    protected static $allowedFields = ['name', 'email', 'password'];
+    protected static $allowedFields = ['name', 'email', 'password', 'status', 'rol_id'];
 
     /**
      * obtener los datos de la tabla en 'array' u 'object'

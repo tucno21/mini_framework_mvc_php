@@ -4,12 +4,12 @@ namespace App\Model;
 
 use System\Model;
 
-class Register extends Model
+class Rol extends Model
 {
     /**
      * nombre de la tabla
      */
-    protected static $table       = 'table';
+    protected static $table       = 'roles';
     /**
      * nombre primary key
      */
@@ -17,8 +17,8 @@ class Register extends Model
     /**
      * nombre de la columnas de la tabla
      */
-    protected static $allowedFields = ['username', 'password'];
-     /**
+    protected static $allowedFields = ['name_rol'];
+    /**
      * obtener los datos de la tabla en 'array' u 'object'
      */
     protected static $returnType     = 'object';
