@@ -35,7 +35,16 @@ class AuthController extends Controller
                 'data' => $data,
             ]);
         } else {
-            $user = Auth::select('id, email, name')->where('email', $data->email)->get();
+            // $user = Auth::select('id, email, name')->where('email', $data->email)->get();
+
+            $user = Auth::select('users.id', 'users.email', 'users.name', 'users.status', 'roles.rol_name')
+                ->join('roles', 'users.rol_id', '=', 'roles.id')
+                ->get();
+
+            if ($user->status == 0) {
+                session()->flash('status', 'Usuario desactivado');
+                return back()->route('login');
+            }
 
             auth()->attempt($user);
 

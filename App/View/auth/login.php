@@ -6,6 +6,12 @@
             <img class="mb-4" src="https://assets.stickpng.com/thumbs/58481791cef1014c0b5e4994.png" alt="" width="72" height="65">
             <h1 class="h3 mb-3 fw-normal">Login</h1>
 
+            <?php if (session()->has('status')) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= session()->get('status') ?>
+                </div>
+            <?php endif; ?>
+
             <div class="form-floating mb-2">
                 <input name="email" type="email" class="form-control <?= isset($err->email) ? 'is-invalid' : '' ?>" id="email" value="<?= isset($data->email) ? $data->email : '' ?>">
                 <label for="email">Email</label>

@@ -36,6 +36,9 @@ class RegisterController extends Controller
             session()->remove('renderView');
             session()->remove('reserveRoute');
 
+            $data->rol_id = 2;
+            // dd($data);
+
             Auth::create($data);
 
             return redirect()->route('login');
