@@ -3,6 +3,7 @@
 namespace App\Controller\BackView;
 
 use System\Controller;
+use App\Model\Permissions;
 
 class PermissionController extends Controller
 {
@@ -10,46 +11,98 @@ class PermissionController extends Controller
     {
         //ejecutar para proteger la rutas cuando inicia sesion
         //enviar la sesion y el parametro principal de la url
-        //$this->middleware(auth()->user(), ['/dashboard']);
+        $this->middleware(auth()->user(), ['/permissions']);
     }
 
     public function index()
     {
-        //return view('folder/file', [
-        //   'var' => 'es una variable',
-        //]);
+        $permissions = Permissions::get();
+
+        return view('permission.index', [
+            'titulo' => 'panel de permisos',
+            'permissions' => $permissions,
+        ]);
     }
 
     public function create()
     {
-        $data = $this->request()->getInput();
-         //return view('folder/file', [
-        //   'var' => 'es una variable',
-        //]);
+        return view('permission.create', [
+            'titulo' => 'crear permisos',
+        ]);
     }
 
     public function store()
     {
         $data = $this->request()->getInput();
-        //return redirect()->route('nameRoute');
+
+        $valid = $this->validate($data, [
+            'per_name' => 'required',
+            'description' => 'required',
+        ]);
+
+        if ($valid !== true) {
+            return back()->route('permissions.create', [
+                'err' =>  $valid,
+                'data' => $data,
+            ]);
+        } else {
+
+            session()->remove('renderView');
+            session()->remove('reserveRoute');
+
+            Permissions::create($data);
+
+            return redirect()->route('permissions');
+        }
     }
 
     public function edit()
     {
-         //return view('folder/file', [
-        //   'var' => 'es una variable',
-        //]);
+        $id = $this->request()->getInput();
+
+        if (empty((array)$id)) {
+            $per = null;
+        } else {
+            $per = Permissions::first($id->id);
+        }
+
+        return view('permission.edit', [
+            'titulo' => 'editar permisos',
+            'data' => $per,
+        ]);
     }
 
     public function update()
     {
         $data = $this->request()->getInput();
-        //return redirect()->route('nameRoute');
+
+        $valid = $this->validate($data, [
+            'per_name' => 'required',
+            'description' => 'required',
+        ]);
+
+        if ($valid !== true) {
+            return back()->route('permissions.edit', [
+                'err' =>  $valid,
+                'data' => $data,
+            ]);
+        } else {
+
+            session()->remove('renderView');
+            session()->remove('reserveRoute');
+
+            Permissions::update($data->id, $data);
+
+            return redirect()->route('permissions');
+        }
     }
 
     public function destroy()
     {
         $data = $this->request()->getInput();
-        // return redirect()->route('nameRoute');
+
+        Permissions::delete((int)$data->id);
+
+        return redirect()->route('permissions');
     }
 }

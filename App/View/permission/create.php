@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Panel de control</h4>
+                    <h4 class="page-title">Crear Permisos</h4>
                 </div>
             </div>
         </div>
@@ -19,13 +19,13 @@
         <!-- end row -->
 
         <div class="row">
-            <form action="<?= route('users.create') ?>" method="POST">
+            <form action="<?= route('permissions.create') ?>" method="POST">
                 <div class="row g-3">
 
                     <?php include_once 'imputs.php' ?>
 
                     <div class="col-md-12">
-                        <button class="btn btn-lg btn-primary mt-3" type="submit">Crear Usuario</button>
+                        <button class="btn btn-lg btn-primary mt-3" type="submit">Crear permiso</button>
                     </div>
                 </div>
             </form>

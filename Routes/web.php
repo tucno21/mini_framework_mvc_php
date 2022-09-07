@@ -8,6 +8,7 @@ use App\Controller\BackView\UserController;
 use App\Controller\FrontView\HomeController;
 use App\Controller\BackView\ProductoController;
 use App\Controller\BackView\DashboardController;
+use App\Controller\BackView\PermissionController;
 
 /**
  * cargar el autoloader de composer Y la configuracion de la aplicacion
