@@ -35,6 +35,12 @@ Route::get('/users/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::post('/users/edit', [UserController::class, 'update']);
 Route::get('/users/destroy', [UserController::class, 'destroy'])->name('users.destroy');
 
+//roles
+Route::get('/roles', [RolController::class, 'index'])->name('roles');
+
+//permisos
+Route::get('/permissions', [PermisoController::class, 'index'])->name('permissions');
+
 //productos
 Route::get('/products', [ProductoController::class, 'index'])->name('products');
 Route::get('/products/create', [ProductoController::class, 'create'])->name('products.create');

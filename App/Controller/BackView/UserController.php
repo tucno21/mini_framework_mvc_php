@@ -17,35 +17,26 @@ class UserController extends Controller
 
     public function index()
     {
-        if (session()->user()->rol_name == 'Administrador') {
+        $users = Auth::select('users.id', 'users.email', 'users.name', 'users.status', 'roles.rol_name')
+            ->join('roles', 'users.rol_id', '=', 'roles.id')
+            ->get();
 
-            $users = Auth::select('users.id', 'users.email', 'users.name', 'users.status', 'roles.rol_name')
-                ->join('roles', 'users.rol_id', '=', 'roles.id')
-                ->get();
+        // dd($user);
 
-            // dd($user);
-
-            return view('users.index', [
-                'titulo' => 'lista de usuarios',
-                'users' => $users,
-            ]);
-        } else {
-            return redirect()->route('dashboard');
-        }
+        return view('users.index', [
+            'titulo' => 'lista de usuarios',
+            'users' => $users,
+        ]);
     }
 
     public function create()
     {
-        if (session()->user()->rol_name == 'Administrador') {
-            $roles = Rol::get();
+        $roles = Rol::get();
 
-            return view('users.create', [
-                'titulo' => 'crear usuarios',
-                'roles' => $roles,
-            ]);
-        } else {
-            return redirect()->route('dashboard');
-        }
+        return view('users.create', [
+            'titulo' => 'crear usuarios',
+            'roles' => $roles,
+        ]);
     }
 
     public function store()
@@ -77,28 +68,24 @@ class UserController extends Controller
 
     public function edit()
     {
-        if (session()->user()->rol_name == 'Administrador') {
-            $roles = Rol::get();
+        $roles = Rol::get();
 
-            $id = $this->request()->getInput();
+        $id = $this->request()->getInput();
 
-            if (empty((array)$id)) {
-                $user = null;
-            } else {
-                // $user = Auth::first($id->id);
-                $user = Auth::select('id', 'name', 'email', 'status', 'rol_id')
-                    ->where('id', $id->id)
-                    ->get();
-            }
-
-            return view('users.edit', [
-                'titulo' => 'actualizar usuarios',
-                'roles' => $roles,
-                'data' => $user,
-            ]);
+        if (empty((array)$id)) {
+            $user = null;
         } else {
-            return redirect()->route('dashboard');
+            // $user = Auth::first($id->id);
+            $user = Auth::select('id', 'name', 'email', 'status', 'rol_id')
+                ->where('id', $id->id)
+                ->get();
         }
+
+        return view('users.edit', [
+            'titulo' => 'actualizar usuarios',
+            'roles' => $roles,
+            'data' => $user,
+        ]);
     }
 
     public function update()

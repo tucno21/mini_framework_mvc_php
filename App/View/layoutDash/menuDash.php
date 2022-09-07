@@ -30,20 +30,35 @@ $linksSidebar = [
         'url'  => route('dashboard'),
         'icon' => 'bi bi-speedometer2',
     ],
-    session()->user()->rol_name == 'Administrador' ?
-        [
-            'mode' => 'menu',
-            'text' => 'Usuarios',
-            'url'  => route('users'),
-            'icon' => 'bi bi-person-lines-fill',
-        ] : '',
-    session()->user()->rol_name == 'Administrador' ?
-        [
-            'mode' => 'menu',
-            'text' => 'Productos',
-            'url'  => route('products'),
-            'icon' => 'bi bi-shop',
-        ] : '',
+    [
+        'mode' => 'submenu',
+        'text'    => 'Usuarios',
+        'url'    => '#',
+        'icon' => 'bi bi-person-lines-fill',
+        'submenu' => [
+            [
+                'text' => 'Usuarios',
+                'url'  => route('users'),
+                'icon' => 'fas fa-circle',
+            ],
+            [
+                'text' => 'Roles',
+                'url'  => route('roles'),
+                'icon' => 'fas fa-circle',
+            ],
+            [
+                'text' => 'Permisos',
+                'url'  => route('permissions'),
+                'icon' => 'fas fa-circle',
+            ],
+        ],
+    ],
+    [
+        'mode' => 'menu',
+        'text' => 'Productos',
+        'url'  => route('products'),
+        'icon' => 'bi bi-shop',
+    ],
 ];
 
 
