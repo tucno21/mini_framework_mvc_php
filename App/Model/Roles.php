@@ -17,7 +17,7 @@ class Roles extends Model
     /**
      * nombre de la columnas de la tabla
      */
-    protected static $allowedFields = ['rol name',];
+    protected static $allowedFields = ['rol_name',];
     /**
      * obtener los datos de la tabla en 'array' u 'object'
      */

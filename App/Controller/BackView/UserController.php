@@ -2,8 +2,8 @@
 
 namespace App\Controller\BackView;
 
-use App\Model\Rol;
 use App\Model\Auth;
+use App\Model\Roles;
 use System\Controller;
 
 class UserController extends Controller
@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Rol::get();
+        $roles = Roles::get();
 
         return view('users.create', [
             'titulo' => 'crear usuarios',
@@ -68,7 +68,7 @@ class UserController extends Controller
 
     public function edit()
     {
-        $roles = Rol::get();
+        $roles = Roles::get();
 
         $id = $this->request()->getInput();
 

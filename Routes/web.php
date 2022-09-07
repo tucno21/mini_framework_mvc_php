@@ -2,6 +2,7 @@
 
 use System\Route;
 use App\Controller\Auth\AuthController;
+use App\Controller\BackView\RolController;
 use App\Controller\Auth\RegisterController;
 use App\Controller\BackView\UserController;
 use App\Controller\FrontView\HomeController;
