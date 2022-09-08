@@ -37,7 +37,7 @@ class AuthController extends Controller
         } else {
             // $user = Auth::select('id, email, name')->where('email', $data->email)->get();
 
-            $user = Auth::select('users.id', 'users.email', 'users.name', 'users.status', 'roles.rol_name')
+            $user = Auth::select('users.id', 'users.email', 'users.name', 'users.status', 'users.rol_id', 'roles.rol_name')
                 ->join('roles', 'users.rol_id', '=', 'roles.id')
                 ->get();
 
