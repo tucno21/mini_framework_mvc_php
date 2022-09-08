@@ -176,6 +176,11 @@ function can(string $data)
 
     $permisosRol = Permissions::permisosRol($rolId);
 
+    //cuando viene un solo objeto
+    if (is_object($permisosRol)) {
+        $permisosRol = [$permisosRol];
+    }
+
     if (in_array($data, array_column((array)$permisosRol, 'per_name'))) {
         return true;
     } else {
