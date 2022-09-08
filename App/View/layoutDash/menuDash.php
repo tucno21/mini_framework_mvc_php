@@ -24,41 +24,46 @@ $menuSession = [
 
 //CREACION DE ENLACES PARA EL MENU SIDEBAR
 $linksSidebar = [
-    [
-        'mode' => 'menu',
-        'text' => 'Dashboard',
-        'url'  => route('dashboard'),
-        'icon' => 'bi bi-speedometer2',
-    ],
-    [
-        'mode' => 'submenu',
-        'text'    => 'Usuarios',
-        'url'    => '#',
-        'icon' => 'bi bi-person-lines-fill',
-        'submenu' => [
-            [
-                'text' => 'Usuarios',
-                'url'  => route('users'),
-                'icon' => 'fas fa-circle',
+    can('dashboard') ?
+        [
+            'mode' => 'menu',
+            'text' => 'Dashboard',
+            'url'  => route('dashboard'),
+            'icon' => 'bi bi-speedometer2',
+        ] : null,
+    can('users') || can('roles') ?
+        [
+            'mode' => 'submenu',
+            'text'    => 'Usuarios',
+            'url'    => '#',
+            'icon' => 'bi bi-person-lines-fill',
+            'submenu' => [
+                can('users') ?
+                    [
+                        'text' => 'Usuarios',
+                        'url'  => route('users'),
+                        'icon' => 'fas fa-circle',
+                    ] : null,
+                can('roles') ?
+                    [
+                        'text' => 'Roles',
+                        'url'  => route('roles'),
+                        'icon' => 'fas fa-circle',
+                    ] : null,
+                [
+                    'text' => 'Permisos',
+                    'url'  => route('permissions'),
+                    'icon' => 'fas fa-circle',
+                ],
             ],
-            [
-                'text' => 'Roles',
-                'url'  => route('roles'),
-                'icon' => 'fas fa-circle',
-            ],
-            [
-                'text' => 'Permisos',
-                'url'  => route('permissions'),
-                'icon' => 'fas fa-circle',
-            ],
-        ],
-    ],
-    [
-        'mode' => 'menu',
-        'text' => 'Productos',
-        'url'  => route('products'),
-        'icon' => 'bi bi-shop',
-    ],
+        ] : null,
+    can('products') ?
+        [
+            'mode' => 'menu',
+            'text' => 'Productos',
+            'url'  => route('products'),
+            'icon' => 'bi bi-shop',
+        ] : null,
 ];
 
 
