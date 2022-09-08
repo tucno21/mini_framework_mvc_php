@@ -19,9 +19,11 @@
         <!-- end row -->
 
         <div class="row">
-            <div class="p-2 mb-2">
-                <a href="<?= route('users.create') ?>" class="btn btn-outline-dark btn-sm">Crear usuario</a>
-            </div>
+            <?php if (can('users.create')) : ?>
+                <div class="p-2 mb-2">
+                    <a href="<?= route('users.create') ?>" class="btn btn-outline-dark btn-sm">Crear usuario</a>
+                </div>
+            <?php endif;  ?>
             <table class="table">
                 <thead>
                     <tr>
@@ -44,8 +46,14 @@
                                 <p class="<?= $user->status == 1  ? 'btn btn-outline-success rounded-pill btn-xs  waves-effect waves-light' : 'btn btn-outline-danger rounded-pill btn-xs  waves-effect waves-light' ?>"><?= $user->status == 1  ? 'activo' : 'inactivo' ?> </p>
                             </td>
                             <td><?= $user->rol_name ?></td>
-                            <td><a href="<?= route('users.edit') . '?id=' . $user->id ?>" class="btn btn-outline-warning btn-sm"><i class="bi bi-pencil"></i></a></td>
-                            <td><a href=<?= route('users.destroy') . '?id=' . $user->id ?>" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i></a></td>
+
+                            <?php if (can('users.edit')) : ?>
+                                <td><a href="<?= route('users.edit') . '?id=' . $user->id ?>" class="btn btn-outline-warning btn-sm"><i class="bi bi-pencil"></i></a></td>
+                            <?php endif;  ?>
+
+                            <?php if (can('users.destroy')) : ?>
+                                <td><a href=<?= route('users.destroy') . '?id=' . $user->id ?>" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i></a></td>
+                            <?php endif;  ?>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

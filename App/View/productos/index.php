@@ -19,9 +19,11 @@
         <!-- end row -->
 
         <div class="row">
-            <div class="p-2 mb-2">
-                <a href="<?= route('products.create') ?>" class="btn btn-outline-dark btn-sm">Crear producto</a>
-            </div>
+            <?php if (can('products.create')) : ?>
+                <div class="p-2 mb-2">
+                    <a href="<?= route('products.create') ?>" class="btn btn-outline-dark btn-sm">Crear producto</a>
+                </div>
+            <?php endif;  ?>
             <table class="table">
                 <thead>
                     <tr>
@@ -46,8 +48,12 @@
                             <td><?= $prod->precio ?></td>
                             <td><?= $prod->created_at ?></td>
                             <td><?= $prod->updated_at ?></td>
-                            <td><a href="<?= route('products.edit') . '?id=' . $prod->id ?>" class="btn btn-outline-warning btn-sm"><i class="bi bi-pencil"></i></a></td>
-                            <td><a href=<?= route('products.destroy') . '?id=' . $prod->id ?>" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i></a></td>
+                            <?php if (can('products.edit')) : ?>
+                                <td><a href="<?= route('products.edit') . '?id=' . $prod->id ?>" class="btn btn-outline-warning btn-sm"><i class="bi bi-pencil"></i></a></td>
+                            <?php endif;  ?>
+                            <?php if (can('products.destroy')) : ?>
+                                <td><a href=<?= route('products.destroy') . '?id=' . $prod->id ?>" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i></a></td>
+                            <?php endif;  ?>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

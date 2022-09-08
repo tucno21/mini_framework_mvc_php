@@ -19,9 +19,11 @@
         <!-- end row -->
 
         <div class="row">
-            <div class="p-2 mb-2">
-                <a href="<?= route('roles.create') ?>" class="btn btn-outline-dark btn-sm">Crear Rol</a>
-            </div>
+            <?php if (can('roles.create')) : ?>
+                <div class="p-2 mb-2">
+                    <a href="<?= route('roles.create') ?>" class="btn btn-outline-dark btn-sm">Crear Rol</a>
+                </div>
+            <?php endif;  ?>
             <table class="table">
                 <thead>
                     <tr>
@@ -38,8 +40,15 @@
                             <th scope="row"><?= $r->id ?></th>
                             <td><?= $r->rol_name ?></td>
                             <td><a href="<?= route('roles.permissions') . '?id=' . $r->id ?>" class="btn btn-outline-primary btn-sm"><i class="bi bi-key"></i></a></td>
-                            <td><a href="<?= route('roles.edit') . '?id=' . $r->id ?>" class="btn btn-outline-warning btn-sm"><i class="bi bi-pencil"></i></a></td>
-                            <td><a href=<?= route('roles.destroy') . '?id=' . $r->id ?>" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i></a></td>
+
+                            <?php if (can('roles.edit')) : ?>
+                                <td><a href="<?= route('roles.edit') . '?id=' . $r->id ?>" class="btn btn-outline-warning btn-sm"><i class="bi bi-pencil"></i></a></td>
+                            <?php endif;  ?>
+
+                            <?php if (can('roles.destroy')) : ?>
+                                <td><a href=<?= route('roles.destroy') . '?id=' . $r->id ?>" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i></a></td>
+                            <?php endif;  ?>
+
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
