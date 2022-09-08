@@ -39,7 +39,10 @@
                         <tr>
                             <th scope="row"><?= $r->id ?></th>
                             <td><?= $r->rol_name ?></td>
-                            <td><a href="<?= route('roles.permissions') . '?id=' . $r->id ?>" class="btn btn-outline-primary btn-sm"><i class="bi bi-key"></i></a></td>
+
+                            <?php if (can('roles.permissions')) : ?>
+                                <td><a href="<?= route('roles.permissions') . '?id=' . $r->id ?>" class="btn btn-outline-primary btn-sm"><i class="bi bi-key"></i></a></td>
+                            <?php endif;  ?>
 
                             <?php if (can('roles.edit')) : ?>
                                 <td><a href="<?= route('roles.edit') . '?id=' . $r->id ?>" class="btn btn-outline-warning btn-sm"><i class="bi bi-pencil"></i></a></td>
