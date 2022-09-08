@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Editar permisos</h4>
+                    <h4 class="page-title">Dar permisos para el Rol: <?= $rol->rol_name ?></h4>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <input type="hidden" name="rol_id" value="<?= $id ?>">
+                <input type="hidden" name="rol_id" value="<?= $rol->id ?>">
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
         </div>

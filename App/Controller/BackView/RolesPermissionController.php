@@ -2,6 +2,7 @@
 
 namespace App\Controller\BackView;
 
+use App\Model\Roles;
 use System\Controller;
 use App\Model\Permissions;
 
@@ -27,16 +28,13 @@ class RolesPermissionController extends Controller
 
         $permissions = Permissions::select('id', 'per_name', 'description')->get();
 
-        // array_key($permissions, 'id', 'per_name');
-
-
-        // dd(in_array('dashboard', array_column($permisosRol, 'per_name')));
+        $rol = Roles::select('id', 'rol_name')->where('id', (int)$data->id)->get();
 
         return view('roles.permission', [
             'titulo' => 'control de permisos',
             'permissions' => $permissions,
             'permisosRol' => $permisosRol,
-            'id' => $data->id,
+            'rol' => $rol
         ]);
     }
 
