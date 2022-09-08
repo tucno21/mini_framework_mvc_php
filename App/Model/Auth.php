@@ -51,12 +51,4 @@ class Auth extends Model
      */
     protected static $createdField    = 'created_at';
     protected static $updatedField    = 'updated_at';
-
-    public static function consulta()
-    {
-        $query = "SELECT * FROM users";
-        $data = parent::queryMod($query);
-
-        return $data;
-    }
 }

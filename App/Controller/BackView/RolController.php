@@ -18,6 +18,11 @@ class RolController extends Controller
     {
         $roles = Roles::get();
 
+        //cuando viene un solo objeto
+        if (is_object($roles)) {
+            $roles = [$roles];
+        }
+
         return view('roles.index', [
             'titulo' => 'panel de roles',
             'roles' => $roles,

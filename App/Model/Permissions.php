@@ -35,4 +35,33 @@ class Permissions extends Model
      */
     protected static $createdField    = 'created_at';
     protected static $updatedField    = 'updated_at';
+
+
+    public static function permisosRol($id)
+    {
+        $sql = "SELECT permisos.id, permisos.per_name FROM roles_permisos INNER JOIN roles ON roles_permisos.rol_id = roles.id INNER JOIN permisos ON roles_permisos.permiso_id = permisos.id WHERE roles.id = $id";
+
+        return self::querySimple($sql);
+    }
+
+    public static function sync($id, $data)
+    {
+        //query para eliminar los permisos del permisos del rol
+        $sql = "DELETE FROM `roles_permisos` WHERE rol_id = $id";
+        self::querySimple($sql);
+
+        //query para insertar los permisos del rol
+        //INSERT INTO `roles_permisos` (`permiso_id`, `rol_id`) VALUES ('1', '1'), ('6', '1'), ('2', '1'), ('3', '1');
+        $sql2 = "INSERT INTO `roles_permisos` (`permiso_id`, `rol_id`) VALUES ";
+
+        $permisos = $data;
+
+        foreach ($permisos as $key => $value) {
+            $sql2 .= "($value, $id),";
+        }
+
+        $sql2 = substr($sql2, 0, -1);
+
+        self::querySimple($sql2);
+    }
 }

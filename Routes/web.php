@@ -9,6 +9,7 @@ use App\Controller\FrontView\HomeController;
 use App\Controller\BackView\ProductoController;
 use App\Controller\BackView\DashboardController;
 use App\Controller\BackView\PermissionController;
+use App\Controller\BackView\RolesPermissionController;
 
 /**
  * cargar el autoloader de composer Y la configuracion de la aplicacion
@@ -52,6 +53,10 @@ Route::post('/permissions/create', [PermissionController::class, 'store']);
 Route::get('/permissions/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
 Route::post('/permissions/edit', [PermissionController::class, 'update']);
 Route::get('/permissions/destroy', [PermissionController::class, 'destroy'])->name('permissions.destroy');
+
+//role y permisos
+Route::get('/roles/permissions', [RolesPermissionController::class, 'edit'])->name('roles.permissions');
+Route::post('/roles/permissions', [RolesPermissionController::class, 'update']);
 
 //productos
 Route::get('/products', [ProductoController::class, 'index'])->name('products');

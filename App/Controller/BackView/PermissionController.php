@@ -18,6 +18,11 @@ class PermissionController extends Controller
     {
         $permissions = Permissions::get();
 
+        //cuando viene un solo objeto
+        if (is_object($permissions)) {
+            $permissions = [$permissions];
+        }
+
         return view('permission.index', [
             'titulo' => 'panel de permisos',
             'permissions' => $permissions,

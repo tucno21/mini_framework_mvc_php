@@ -546,4 +546,12 @@ class Model
         self::$query = $query;
         return self::readDB($data);
     }
+
+    //RECIVE SOLO QUERY
+    public static function querySimple($query)
+    {
+        self::startBd();
+        self::$query = $query;
+        return self::readDB();
+    }
 }

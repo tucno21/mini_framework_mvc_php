@@ -21,6 +21,10 @@ class UserController extends Controller
             ->join('roles', 'users.rol_id', '=', 'roles.id')
             ->get();
 
+        //cuando viene un solo objeto
+        if (is_object($users)) {
+            $users = [$users];
+        }
         // dd($user);
 
         return view('users.index', [
