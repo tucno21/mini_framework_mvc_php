@@ -4,6 +4,7 @@ use System\Route;
 use System\Session;
 use System\Redirect;
 use System\RenderView;
+use App\Model\Permissions;
 use System\CronosException;
 
 /**
@@ -164,4 +165,20 @@ function ext(string $folderLayout)
     $folderLayout = str_replace('.', '/', $folderLayout);
 
     return DIR_APP . '/View/' . $folderLayout . '.php';
+}
+
+/**
+ * funcion para verificar si el usuario tiene permiso
+ */
+function can(string $data)
+{
+    $rolId = session()->user()->rol_id;
+
+    $permisosRol = Permissions::permisosRol($rolId);
+
+    if (in_array($data, array_column((array)$permisosRol, 'per_name'))) {
+        return true;
+    } else {
+        return false;
+    }
 }
