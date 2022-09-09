@@ -54,3 +54,4 @@
 </div>
 
 <input type="hidden" name="id" value="<?= isset($data->id) ? $data->id : '' ?> ">
+<input type="hidden" name="_token" value="<?= csrf() ?>">
