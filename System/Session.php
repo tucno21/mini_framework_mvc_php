@@ -161,4 +161,20 @@ class Session
     {
         $_SESSION[self::FLASH_SESSION][$key] = $value;
     }
+
+    /**
+     * session set csrf
+     */
+    public function setCsrf(string $key, string $value)
+    {
+        $_SESSION[$key] = $value;
+    }
+
+    /**
+     * session get csrf
+     */
+    public function getCsrf(string $key)
+    {
+        return $_SESSION[$key];
+    }
 }

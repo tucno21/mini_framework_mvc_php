@@ -1,5 +1,6 @@
 <?php
 
+use System\Csrf;
 use System\Route;
 use System\Session;
 use System\Redirect;
@@ -185,5 +186,15 @@ function can(string $data)
         return true;
     } else {
         return false;
+    }
+}
+
+/**
+ * funcion Csrf
+ */
+if (!function_exists('csrf')) {
+    function csrf()
+    {
+        return Csrf::generateToken();
     }
 }
