@@ -25,7 +25,7 @@
                     </div>
                 <?php endif; ?>
             </div>
-
+            <?= csrf() ?>
             <button class="w-90 btn btn-lg btn-primary mt-3" type="submit">Iniciar Sesión</button>
         </form>
 
