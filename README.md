@@ -184,7 +184,8 @@ can('routerName') //return true or false
 ### para formulario csrf (obligatorio) [☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
-<input type="hidden" name="_token" value="<?= csrf() ?>">
+//dentro del <form></form>
+<?= csrf() ?>
 ```
 
 ## FUNCIONES CONTROLADOR
