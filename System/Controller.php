@@ -33,9 +33,18 @@ class Controller
     /**
      * un middleware que verifica si el usuario de tu aplicación está autenticado
      */
-    protected function middleware(mixed $session, array $middleware)
+    protected function middleware(string $session)
     {
-        $mw = new Middleware();
-        $mw->run($session, $middleware);
+        // $mw = new Middleware();
+        // $mw->run($session, $middleware);
+        Middleware::run($session);
+    }
+
+    protected function except(array $except)
+    {
+        // $mw = new Middleware();
+        // $mw->except($except);
+        Middleware::except($except);
+        return $this;
     }
 }

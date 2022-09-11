@@ -17,28 +17,65 @@ class Middleware
      */
     protected Request $request;
 
+    public static $exceptBool = false;
+    public static $except = [];
+
     public function __construct()
     {
         $this->request = new Request();
     }
 
-    public function run(mixed $session, array $restrictions)
+    public static function run(string $session)
     {
-        if ($session === false) {
+        if ($session == 'auth') {
+            if (self::$exceptBool === false) {
+                if (!session()->has()) {
+                    header("Location: /");
+                }
+            } else {
+                $request = new Request();
+                $url = $request->getPath();
+                $url = base_url . $url;
 
-            /**
-             * compara los parametros capturados con el middleware creado para su acceso
-             */
-            $url = $this->request->getPath();
-            $resp = array_search($url, $restrictions);
+                $exceptUrl = [];
+                foreach (self::$except as $key => $value) {
+                    $data =  route($value);
+                    array_push($exceptUrl, $data);
+                }
 
-            //strstr estrae la cadena de texto de una parte de su busqueda
-            $urlNotPermission = strstr($url, $restrictions[$resp], false);
-
-            // if (is_int($resp)) {
-            if ($urlNotPermission) {
-                header("Location: /");
+                if (!session()->has() && !in_array($url, $exceptUrl)) {
+                    header("Location: /");
+                }
             }
         }
+
+        if ($session !== 'auth') {
+
+            if (self::$exceptBool === false) {
+                if (!session()->has($session)) {
+                    header("Location: /");
+                }
+            } else {
+                $request = new Request();
+                $url = $request->getPath();
+                $url = base_url . $url;
+
+                $exceptUrl = [];
+                foreach (self::$except as $key => $value) {
+                    $data =  route($value);
+                    array_push($exceptUrl, $data);
+                }
+
+                if (!session()->has($session) && !in_array($url, $exceptUrl)) {
+                    header("Location: /");
+                }
+            }
+        }
+    }
+
+    public static function except(array $except)
+    {
+        self::$exceptBool = true;
+        self::$except = $except;
     }
 }
