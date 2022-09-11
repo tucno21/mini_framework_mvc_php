@@ -195,6 +195,8 @@ function can(string $data)
 if (!function_exists('csrf')) {
     function csrf()
     {
-        return Csrf::generateToken();
+        $csrf = Csrf::generateToken();
+        $imputs = "<input type='hidden' name='_token' value='$csrf'>";
+        return $imputs;
     }
 }
