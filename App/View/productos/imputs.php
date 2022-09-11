@@ -28,4 +28,4 @@
 
 <input type="hidden" name="user_id" value="<?= isset($data->user_id) ? $data->user_id : auth()->user()->id ?> ">
 <input type="hidden" name="id" value="<?= isset($data->id) ? $data->id : '' ?> ">
-<input type="hidden" name="_token" value="<?= csrf() ?>">
+<?= csrf() ?>

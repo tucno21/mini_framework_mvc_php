@@ -45,7 +45,7 @@
                     </div>
                 <?php endif; ?>
             </div>
-            <input type="hidden" name="_token" value="<?= csrf() ?>">
+            <?= csrf() ?>
             <button class="w-90 btn btn-lg btn-primary mt-3" type="submit">Crear Cuenta</button>
         </form>
 
