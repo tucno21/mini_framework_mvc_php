@@ -8,9 +8,10 @@ class CAMBIO extends Controller
 {
     public function __construct()
     {
-        //ejecutar para proteger la rutas cuando inicia sesion
-        //enviar la sesion y el parametro principal de la url
-        //$this->middleware(auth()->user(), ['/dashboard']);
+        //enviar 'auth' si ha creado session sin clave de lo contrario enviar la clave
+        //$this->middleware('auth');
+        //enviar el nombre de la ruta
+        //$this->except(['users', 'users.create'])->middleware('loco');
     }
 
     public function index()
@@ -22,8 +23,7 @@ class CAMBIO extends Controller
 
     public function create()
     {
-        $data = $this->request()->getInput();
-         //return view('folder/file', [
+        //return view('folder/file', [
         //   'var' => 'es una variable',
         //]);
     }
@@ -31,25 +31,57 @@ class CAMBIO extends Controller
     public function store()
     {
         $data = $this->request()->getInput();
-        //return redirect()->route('nameRoute');
+
+        // $valid = $this->validate($data, [
+        //     'name' => 'required',
+        // ]);
+        // if ($valid !== true) {
+        //     return back()->route('route.name', [
+        //         'err' =>  $valid,
+        //         'data' => $data,
+        //     ]);
+        // } else {
+        //     Model::create($data);
+        //     return redirect()->route('route.name');
+        // }
     }
 
     public function edit()
     {
-         //return view('folder/file', [
-        //   'var' => 'es una variable',
-        //]);
+         $id = $this->request()->getInput();
+
+        // if (empty((array)$id)) {
+        //     $rol = null;
+        // } else {
+        //     $rol = Model::first($id->id);
+        // }
+        // return view('folder.file', [
+        //     'data' => $rol,
+        // ]);
     }
 
     public function update()
     {
         $data = $this->request()->getInput();
-        //return redirect()->route('nameRoute');
+        // $valid = $this->validate($data, [
+        //     'name' => 'required',
+        // ]);
+
+        // if ($valid !== true) {
+        //     return back()->route('route.name', [
+        //         'err' =>  $valid,
+        //         'data' => $data,
+        //     ]);
+        // } else {
+        //     Model::update($data->id, $data);
+        //     return redirect()->route('route.name');
+        // }
     }
 
     public function destroy()
     {
         $data = $this->request()->getInput();
-        // return redirect()->route('nameRoute');
+        //$result = Model::delete((int)$data->id);
+        //return redirect()->route('route.name');
     }
 }
