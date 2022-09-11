@@ -5,7 +5,7 @@
 - PHP >= 8.0
 - COMPOSER
 
-**Índice**
+## **Índice**
 
 1. [Configuraciones basicas de connección](#configuraciones-básicas-de-url-y-conección)
 2. [Rutas web](#rutas-web)
@@ -33,6 +33,29 @@
 24. [Tabla de validaciones](#tabla-de-validaciones)
 25. [Creditos](#creditos-📌)
 
+### Directorio de carpetas:
+
+```
+📁framework
+├───📁 App/
+│   ├───📁 Config/
+│   ├───📁 Controller/
+│   ├───📁 Model/
+│   └───📁 View/
+├───📁 public/
+│   └───📄 index.php
+├───📁 Routes/
+│   └───📄 web.php
+├───📁 System/
+│   ├───📁 Layout/
+│   └───📁 Validation/
+├───📄 .gitignore
+├───📄 .htaccess
+├───📄 composer.json
+├───📄 cronos
+└───📄 env
+```
+
 ## Intalacion
 
 clonar el repositorio.
@@ -48,6 +71,8 @@ composer install
 ```
 
 ## CONFIGURACIONES BÁSICAS DE URL Y CONECCIÓN
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 buscar el archivo env en la raiz y renombrar a .env
 agregar la url y la concección de la BD
@@ -80,6 +105,8 @@ $imageFolder = 'img'; //nombre de la carpeta de almacenamiento de imagenes
 
 ## RUTAS WEB
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 Agregar rutas para la web (Routes/web.php)
 
 ```php
@@ -91,6 +118,8 @@ Route::post('/login', [Controller::class, 'login']);
 ```
 
 ## CREAR CONTROLADOR Y MODELO DESDE CONSOLA
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 Generar controlador y modelo sin carpeta
 
@@ -110,6 +139,8 @@ php cronos make:model Name FolderName
 
 ### depurar variables
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 ```php
 //detiene la ejecución del script y muestra el contenido de la variable
 dd($variable);
@@ -118,6 +149,8 @@ d($variable);
 ```
 
 ### función de acceso can()
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
 //verifica si el usuario tiene permisos
@@ -140,13 +173,15 @@ can('routerName') //return true or false
 
 ### función para layout
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 ```php
 //detecta automaticamente el la carpeta View
 <?php include ext('nameFolder.nameFile') ?>
 <?php include ext('layout.head') ?>//ejemplo
 ```
 
-### para formulario csrf (obligatorio)
+### para formulario csrf (obligatorio) [☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
 <input type="hidden" name="_token" value="<?= csrf() ?>">
@@ -155,6 +190,8 @@ can('routerName') //return true or false
 ## FUNCIONES CONTROLADOR
 
 ### Renderizar vista, redireccionar
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
 return view('folder/file', [
@@ -191,6 +228,8 @@ return back()->with('status', 'content');
 
 ### Middleware
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 Agregar en el Controlador que se desea proteger
 
 ```php
@@ -208,6 +247,8 @@ Agregar en el Controlador que se desea proteger
 
 ### obtener datos de GET o POST
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 ```php
 $data = $this->request()->getInput();
 ```
@@ -215,6 +256,8 @@ $data = $this->request()->getInput();
 ## FUNCIONES MODEL
 
 ### Crear, Actualizar y Eliminar
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
 Model::create($data); //retorna object|array
@@ -225,6 +268,8 @@ Model::delete((int)$id);
 ### LEER TABLA
 
 #### Obtener todos los resultados
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
 Model::all();   //no acepta parametros
@@ -240,6 +285,8 @@ Model::where($nameColumn, $operator, $valueColum)->orderBy($colum, $order)->get(
 ```
 
 #### Obtener primer resultado
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
 Model::find();  //no acepta parametros
@@ -259,6 +306,8 @@ Model::where($colum, $operator, $valueColum)->orderBy($colum, $order)->first();
 
 ### resultdo de unir dos tablas (INNER JOIN)
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 ```php
 //acepta 4 parametros, (nombreOtraTabla, nombreTabla.columnaRelacion, operador, nombreOtraTabla.columnaRelacion
 Model::join($nameAnotherTable, $tableNamecolumnRelationship, $operator, $nameAnotherTablecolumnRelationship);
@@ -270,6 +319,8 @@ Model::select($columns)
 ```
 
 ### Obtener resultados especiales
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
 Model::max($nameColumn);  //máximo valor numérico de una columna
@@ -286,6 +337,8 @@ Model::where($colum, $valueColum)->count(); //contar la cantidad de registros ob
 
 ## Orden de modelo de consulta
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 se puede eliminar uno o varios, respetar el orden para no tener errores
 
 ```php
@@ -297,12 +350,16 @@ Model::select($columns)  //no usar si usa ->first()
 
 ### CONSULTA personalizada
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 ```php
 //enviar su propio query
 Model::querySimple($query);
 ```
 
 ## EJEMPLOS
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
 select('email');
@@ -327,6 +384,8 @@ User::select('users.*', 'contacts.phone', 'orders.price')
 
 ## FUNCIONCIÓN SESSIÓN
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 Las sesiones son invocados a traves funciones - solo use una de ellas en todo los documentos
 
 ```php
@@ -335,6 +394,8 @@ auth();
 ```
 
 #### SESSION CON CLAVE Y SUS DATOS(array/objeto)
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
 //crear session
@@ -364,6 +425,8 @@ session()->flush();
 
 #### SESSION CON SIN CLAVE SON CON DATOS(array/objeto)
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 ```php
 //crear session
 auth()->attempt(array|object $value); //no necesita clave
@@ -383,6 +446,8 @@ auth()->logout();
 
 #### SESSION flash(array/objeto)
 
+[☝️Inicio](#mini-framework-mvc-php-81)
+
 ```php
 //mensaje que desaparece en un refresco o cambio de vista
 session()->flash(string $key, string $content);
@@ -392,6 +457,8 @@ session()->get($key)
 ```
 
 ## VALIDACIÓN DE FORMULARIOS
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 ```php
 $data = $this->request()->getInput();
@@ -417,6 +484,8 @@ if ($valid !== true) {
 ```
 
 ## TABLA DE VALIDACIONES
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 | Regla                    | Descripción                                                        | Ejemplo               |
 | ------------------------ | ------------------------------------------------------------------ | --------------------- |
@@ -457,6 +526,8 @@ if ($valid !== true) {
 | `type:param`        | Tipos de archivos permitidos (jpeg,png,zip,gif,svg+xml). | `type:jpeg,png` |
 
 ## Creditos 📌
+
+[☝️Inicio](#mini-framework-mvc-php-81)
 
 _Modelo de framework php_
 
