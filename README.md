@@ -5,6 +5,34 @@
 - PHP >= 8.0
 - COMPOSER
 
+**Índice**
+
+1. [Configuraciones basicas de connección](#configuraciones-básicas-de-url-y-conección)
+2. [Rutas web](#rutas-web)
+3. [Crear controlador y mdelo desde consola](#crear-controlador-y-modelo-desde-consola)
+4. [Función para depurar varibles](#depurar-variables)
+5. [Función de can()](#función-de-acceso-can)
+6. [Función para layout](#función-para-layout)
+7. [Agregar csrf a formulario](#para-formulario-csrf-obligatorio)
+8. [Renderizar vista, redireccionar](#renderizar-vista-redireccionar)
+9. [Middleware](#middleware)
+10. [Obtener datos de GET o POST](#obtener-datos-de-get-o-post)
+11. [Crear, Actualizar y Eliminar](#crear-actualizar-y-eliminar)
+12. [Obtener todos los resultados del modelo](#obtener-todos-los-resultados)
+13. [Obtener primer resultado del modelo](#obtener-primer-resultado)
+14. [resultdo de unir dos tablas (INNER JOIN)](#resultdo-de-unir-dos-tablas-inner-join)
+15. [Obtener resultados especiales del modelo](#obtener-resultados-especiales)
+16. [Orden de modelo de consulta](#orden-de-modelo-de-consulta)
+17. [Consulta personalizada](#consulta-personalizada)
+18. [Ejemplos de consulta de modelo](#ejemplos)
+19. [Funcion Session](#funcionción-sessión)
+20. [Session con clave y datos](#session-con-clave-y-sus-datosarrayobjeto)
+21. [Session sin clave y solo datos](#session-con-sin-clave-son-con-datosarrayobjeto)
+22. [Sessio flas](#session-flasharrayobjeto)
+23. [Validación de formularios](#validación-de-formularios)
+24. [Tabla de validaciones](#tabla-de-validaciones)
+25. [Creditos](#creditos-📌)
+
 ## Intalacion
 
 clonar el repositorio.
@@ -62,41 +90,6 @@ Route::get('/login', [Controller::class, 'login'])->name('login');
 Route::post('/login', [Controller::class, 'login']);
 ```
 
-## FUNCIONES GENERALES
-
-depurar variables
-
-```php
-dd($variable);
-d($variable);
-```
-
-Función para enviar la URL
-
-```php
-<?= base_url ?>/login
-<?= base_url('/login') ?>
-
-//enviar el nombre de la ruta asignado en Routes/web.php
-<?= route('nombreRuta') ?>
-```
-
-Variable Constante general
-
-```php
-DIRPUBLIC  //carpeta /www/framework_mvc_php/public
-APPDIR     //carpeta /www\framework_mvc_php/App
-```
-
-## FUNCIONES PARA EL VISTA
-
-Puede usar en la vista, y realizar secciones dinamicas
-
-```php
-<?= extend('/layout/head.php') ?> //ejemplo
-<?= extend('/layout/footer.php') ?>
-```
-
 ## CREAR CONTROLADOR Y MODELO DESDE CONSOLA
 
 Generar controlador y modelo sin carpeta
@@ -113,9 +106,55 @@ php cronos make:controller Name FolderName
 php cronos make:model Name FolderName
 ```
 
+## FUNCIONES GENERALES
+
+### depurar variables
+
+```php
+//detiene la ejecución del script y muestra el contenido de la variable
+dd($variable);
+//muestra el contenido de la variable sin detener la ejecución del script
+d($variable);
+```
+
+### función de acceso can()
+
+```php
+//verifica si el usuario tiene permisos
+can('routerName') //return true or false
+```
+
+````
+
+## FUNCIONES PARA LA VISTA (VIEW)
+
+### Función obtener url
+
+```php
+<?= base_url ?>/login
+<?= base_url('/login') ?>
+
+//enviar el nombre de la ruta asignado en Routes/web.php
+<?= route('nombreRuta') ?>
+````
+
+### función para layout
+
+```php
+//detecta automaticamente el la carpeta View
+<?php include ext('nameFolder.nameFile') ?>
+<?php include ext('layout.head') ?>//ejemplo
+```
+
+### para formulario csrf (obligatorio)
+
+```php
+<input type="hidden" name="_token" value="<?= csrf() ?>">
+```
+
 ## FUNCIONES CONTROLADOR
 
-Renderizar vista, redireccionar
+### Renderizar vista, redireccionar
 
 ```php
 return view('folder/file', [
@@ -150,14 +189,24 @@ return back()->route('nombre.ruta',[
 return back()->with('status', 'content');
 ```
 
-Verificar si es GET o POST ($result = true/false)
+### Middleware
+
+Agregar en el Controlador que se desea proteger
 
 ```php
-$result = $this->request()->isGet();
-$result = $this->request()->isPost();
+    public function __construct()
+    {
+        //'auth' si la session se ha creado sin clave
+        $this->middleware('auth');
+        //'key' si la session se ha creado con clave - enviar la clave
+        $this->middleware('key');
+
+        //no proteger algunas rutas except['nombreRuta']
+        $this->except(['users', 'users.create'])->middleware('auth');
+    }
 ```
 
-Capturar datos del formulario sanitizados PHP
+### obtener datos de GET o POST
 
 ```php
 $data = $this->request()->getInput();
@@ -165,18 +214,17 @@ $data = $this->request()->getInput();
 
 ## FUNCIONES MODEL
 
-Instanciar el modelo creado al controlador
-
-Crear, Actualizar y Eliminar
+### Crear, Actualizar y Eliminar
 
 ```php
 Model::create($data); //retorna object|array
 Model::update($id, $data);
-Model::delete($id);
+Model::delete((int)$id);
 ```
 
-LEER TABLA
-Obtener todos los resultados
+### LEER TABLA
+
+#### Obtener todos los resultados
 
 ```php
 Model::all();   //no acepta parametros
@@ -185,12 +233,13 @@ Model::select($nameColumn)->get(); //maximo 7 columnas separado por ","
 
 Model::where($colum, $valueColum)->get();
 Model::where($colum, $valueColum)->orderBy($colum, $order)->get();
+
 // where acepta has 3 parametros
 Model::where($nameColumn, $operator, $valueColum)->get();
 Model::where($nameColumn, $operator, $valueColum)->orderBy($colum, $order)->get();
 ```
 
-Obtener primer resultado
+#### Obtener primer resultado
 
 ```php
 Model::find();  //no acepta parametros
@@ -208,17 +257,19 @@ Model::where($colum, $operator, $valueColum)->first();
 Model::where($colum, $operator, $valueColum)->orderBy($colum, $order)->first();
 ```
 
-resultdo de unir dos tablas (INNER JOIN)
+### resultdo de unir dos tablas (INNER JOIN)
 
 ```php
 //acepta 4 parametros, (nombreOtraTabla, nombreTabla.columnaRelacion, operador, nombreOtraTabla.columnaRelacion
 Model::join($nameAnotherTable, $tableNamecolumnRelationship, $operator, $nameAnotherTablecolumnRelationship);
 
 //combinar con select y get
-Model::select($columns)->join($nameAnotherTable, $tableNameColum, $operator, $nameAnotherNameColum)->get();
+Model::select($columns)
+        ->join($nameAnotherTable, $tableNameColum, $operator, $nameAnotherNameColum)
+        ->get();
 ```
 
-Obtener resultados especiales
+### Obtener resultados especiales
 
 ```php
 Model::max($nameColumn);  //máximo valor numérico de una columna
@@ -233,7 +284,7 @@ Model::where($colum, $valueColum)->orderBy($colum, $order)->max();
 Model::where($colum, $valueColum)->count(); //contar la cantidad de registros obtenidos
 ```
 
-### Orden de modelo de consulta
+## Orden de modelo de consulta
 
 se puede eliminar uno o varios, respetar el orden para no tener errores
 
@@ -241,14 +292,14 @@ se puede eliminar uno o varios, respetar el orden para no tener errores
 Model::select($columns)  //no usar si usa ->first()
     ->where($colum, $operator, $valueColum)
     ->orderBy($colum, $order)
-    ->get($limit) // ->first();
+    ->get() // ->first();
 ```
 
-CONSULTA personalizada
+### CONSULTA personalizada
 
 ```php
 //enviar su propio query
-Model::queryMod($query);
+Model::querySimple($query);
 ```
 
 ## EJEMPLOS
@@ -265,16 +316,16 @@ where('name', 'like', 'T%');
 orderBy('name', 'desc');
 orderBy('email', 'asc');
 
+//por id
 first(3);
+//por columana y valor
 first('email', 'a@a.com');
 
 User::select('users.*', 'contacts.phone', 'orders.price')
         ->join('contacts', 'users.id', '=', 'contacts.user_id')->get();
-
-queryMod('SELECT * FROM users');
 ```
 
-## SESSIONES
+## FUNCIONCIÓN SESSIÓN
 
 Las sesiones son invocados a traves funciones - solo use una de ellas en todo los documentos
 
@@ -283,7 +334,7 @@ session();
 auth();
 ```
 
-SESSION CON CLAVE Y SUS DATOS(array/objeto)
+#### SESSION CON CLAVE Y SUS DATOS(array/objeto)
 
 ```php
 //crear session
@@ -295,7 +346,7 @@ session()->flash(string $key, string $content)
 auth()->get(string $key);
 auth()->user(string $key);
 
-//ver todoas las sesiones creadas
+//ver todas las sesiones creadas
 session()->all();
 
 //consultar si existe la session
@@ -311,7 +362,7 @@ session()->forget(string $key);
 session()->flush();
 ```
 
-SESSION CON SIN CLAVE SON CON DATOS(array/objeto)
+#### SESSION CON SIN CLAVE SON CON DATOS(array/objeto)
 
 ```php
 //crear session
@@ -330,56 +381,42 @@ auth()->remove();
 auth()->logout();
 ```
 
-SESSION flash(array/objeto)
+#### SESSION flash(array/objeto)
 
 ```php
 //mensaje que desaparece en un refresco o cambio de vista
 session()->flash(string $key, string $content);
 
-//invocar con la varible - en la vista:
+//invocar con la la clave creada - en la vista:
 session()->get($key)
 ```
 
-## ACCESO A RUTAS (Middleware)
-
-Agregar en el Controlador la ruta que será restingido
-(_enviar la sesion con clave creada_),
-(_enviar arrary de rutas no permitidas sin iniciar login_)
+## VALIDACIÓN DE FORMULARIOS
 
 ```php
-    public function __construct()
-    {
-        $this->middleware(auth()->user(), ['/dashboard']);
-    }
+$data = $this->request()->getInput();
+
+$valid = $this->validate($data, [
+    'name' => 'required|alpha',
+    'username' => 'required|alpha_numeric',
+    'email' => 'required|email|unique:HomeModel,email',
+    'password' => 'required|min:3|max:12|matches:password_confirm',
+    'password_confirm' => 'required',
+    'photo' => 'requiredFile|maxSize:2|type:jpeg,png,zip,svg+xml',
+]);
+
+if ($valid !== true) {
+    return back()->route('products.create', [
+        'err' =>  $valid,
+        'data' => $data,
+    ]);
+} else {
+    Productos::create($data);
+    return redirect()->route('products');
+}
 ```
 
-## Validaciones de Inputs
-
-desde el controlador recivir datos y validar
-
-```php
-        $data = $this->request()->getInput();
-
-        $valid = $this->validate($data, [
-            'name' => 'required|alpha',
-            'username' => 'required|alpha_numeric',
-            'email' => 'required|email|unique:HomeModel,email',
-            'password' => 'required|min:3|max:12|matches:password_confirm',
-            'password_confirm' => 'required',
-            'photo' => 'requiredFile|maxSize:2|type:jpeg,png,zip,svg+xml',
-        ]);
-
-        if ($valid !== true) {
-
-            return $this->redirect('register', [
-                'err' =>  $valid,
-                'data' => $data,
-            ]);
-        } else {
-            Model::create($data);
-            return redirect('/login');
-        }
-```
+## TABLA DE VALIDACIONES
 
 | Regla                    | Descripción                                                        | Ejemplo               |
 | ------------------------ | ------------------------------------------------------------------ | --------------------- |
