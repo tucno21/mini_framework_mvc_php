@@ -11,7 +11,7 @@ class ProductoController extends Controller
     {
         //ejecutar para proteger la rutas cuando inicia sesion
         //enviar la sesion y el parametro principal de la url
-        $this->middleware(auth()->user(), ['/products']);
+        $this->middleware('auth');
     }
 
     public function index()
