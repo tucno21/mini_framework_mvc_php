@@ -10,28 +10,29 @@
 1. [Configuraciones basicas de connección](#configuraciones-básicas-de-url-y-conección)
 2. [Rutas web](#rutas-web)
 3. [Crear controlador y mdelo desde consola](#crear-controlador-y-modelo-desde-consola)
-4. [Función para depurar varibles](#depurar-variables)
-5. [Función de can()](#función-de-acceso-can)
-6. [Función para layout](#función-para-layout)
-7. [Agregar csrf a formulario](#para-formulario-csrf-obligatorio)
-8. [Renderizar vista, redireccionar](#renderizar-vista-redireccionar)
-9. [Middleware](#middleware)
-10. [Obtener datos de GET o POST](#obtener-datos-de-get-o-post)
-11. [Crear, Actualizar y Eliminar](#crear-actualizar-y-eliminar)
-12. [Obtener todos los resultados del modelo](#obtener-todos-los-resultados)
-13. [Obtener primer resultado del modelo](#obtener-primer-resultado)
-14. [resultdo de unir dos tablas (INNER JOIN)](#resultdo-de-unir-dos-tablas-inner-join)
-15. [Obtener resultados especiales del modelo](#obtener-resultados-especiales)
-16. [Orden de modelo de consulta](#orden-de-modelo-de-consulta)
-17. [Consulta personalizada](#consulta-personalizada)
-18. [Ejemplos de consulta de modelo](#ejemplos)
-19. [Funcion Session](#funcionción-sessión)
-20. [Session con clave y datos](#session-con-clave-y-sus-datosarrayobjeto)
-21. [Session sin clave y solo datos](#session-con-sin-clave-son-con-datosarrayobjeto)
-22. [Sessio flas](#session-flasharrayobjeto)
-23. [Validación de formularios](#validación-de-formularios)
-24. [Tabla de validaciones](#tabla-de-validaciones)
-25. [Creditos](#creditos-📌)
+4. [Constantes Generales](#constantes-generales)
+5. [Función para depurar varibles](#depurar-variables)
+6. [Función de can()](#función-de-acceso-can)
+7. [Función para layout](#función-para-layout)
+8. [Agregar csrf a formulario](#para-formulario-csrf-obligatorio)
+9. [Renderizar vista, redireccionar](#renderizar-vista-redireccionar)
+10. [Middleware](#middleware)
+11. [Obtener datos de GET o POST](#obtener-datos-de-get-o-post)
+12. [Crear, Actualizar y Eliminar](#crear-actualizar-y-eliminar)
+13. [Obtener todos los resultados del modelo](#obtener-todos-los-resultados)
+14. [Obtener primer resultado del modelo](#obtener-primer-resultado)
+15. [resultdo de unir dos tablas (INNER JOIN)](#resultdo-de-unir-dos-tablas-inner-join)
+16. [Obtener resultados especiales del modelo](#obtener-resultados-especiales)
+17. [Orden de modelo de consulta](#orden-de-modelo-de-consulta)
+18. [Consulta personalizada](#consulta-personalizada)
+19. [Ejemplos de consulta de modelo](#ejemplos)
+20. [Funcion Session](#funcionción-sessión)
+21. [Session con clave y datos](#session-con-clave-y-sus-datosarrayobjeto)
+22. [Session sin clave y solo datos](#session-con-sin-clave-son-con-datosarrayobjeto)
+23. [Sessio flas](#session-flasharrayobjeto)
+24. [Validación de formularios](#validación-de-formularios)
+25. [Tabla de validaciones](#tabla-de-validaciones)
+26. [Creditos](#creditos-📌)
 
 ### Directorio de carpetas:
 
@@ -85,6 +86,7 @@ DB_DATABASE=mvc
 DB_USERNAME=root
 DB_PASSWORD=root
 
+# dentro de la carpeta public
 FOLDER_IMAGE=img
 
 TIME_ZONE=America/Lima
@@ -133,6 +135,18 @@ Generar controlador y modelo con carpeta
 ```
 php cronos make:controller Name FolderName
 php cronos make:model Name FolderName
+```
+
+## CONSTANTES GENERALES
+
+[☝️Inicio](#mini-framework-mvc-php-81)
+
+```php
+DIR_PUBLIC //   path.../public
+
+DIR_IMG    //    path.../public/FOLDER_IMAGE_de_.env
+
+DIR_APP    //   path.../App
 ```
 
 ## FUNCIONES GENERALES
