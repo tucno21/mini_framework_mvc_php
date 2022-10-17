@@ -42,7 +42,12 @@ if (!function_exists('d')) {
  * ruta de documento public
  * C:/.../www/mini_framework_mvc_php/public
  */
-define('DIR_PUBLIC', $_SERVER['DOCUMENT_ROOT']);
+define('DIR_PUBLIC',  dirname(__DIR__) . '/public');
+
+/**
+ * ruta carpeta de imagenes
+ */
+define('DIR_IMG', dirname(__DIR__) . '/public/' . $imageFolder . '/');
 
 /**
  * ruta de la carpeta App
