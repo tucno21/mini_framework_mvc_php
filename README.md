@@ -171,8 +171,6 @@ d($variable);
 can('routerName') //return true or false
 ```
 
-````
-
 ## FUNCIONES PARA LA VISTA (VIEW)
 
 ### Función obtener url
@@ -183,7 +181,7 @@ can('routerName') //return true or false
 
 //enviar el nombre de la ruta asignado en Routes/web.php
 <?= route('nombreRuta') ?>
-````
+```
 
 ### función para layout
 
