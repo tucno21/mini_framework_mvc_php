@@ -29,13 +29,29 @@ class RolesPermissionController extends Controller
         $permissions = Permissions::select('id', 'per_name', 'description')->get();
 
         $rol = Roles::select('id', 'rol_name')->where('id', (int)$data->id)->get();
-        // dd($rol);
+
+        $group = ['dashboard' => 'Dashboard', 'users' => 'Usuarios', 'roles' => 'Roles', 'products' => 'Productos'];
+
+        foreach ($group as $g => $v) {
+            $permissionsGroup[$g] = [];
+            foreach ($permissions as $p) {
+                if (strpos($p->per_name, $g) !== false) {
+                    //agregar $v
+                    $p->title = $v;
+                    $permissionsGroup[$g][] = $p;
+                }
+            }
+        }
+        // dd($permissionsGroup);
 
         return view('roles.permission', [
             'titulo' => 'control de permisos',
-            'permissions' => $permissions,
+            // 'permissions' => $permissions,
             'permisosRol' => $permisosRol,
-            'rol' => $rol
+            'rol' => $rol,
+            // 'group' => $group,
+            'permissionsGroup' => $permissionsGroup
+
         ]);
     }
 

@@ -48,7 +48,7 @@ class AuthController extends Controller
 
             auth()->attempt($user);
 
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard.index');
         }
     }
 
