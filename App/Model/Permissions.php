@@ -9,7 +9,7 @@ class Permissions extends Model
     /**
      * nombre de la tabla
      */
-    protected static $table       = 'permisos';
+    protected static $table       = 'permissions';
     /**
      * nombre primary key
      */
@@ -39,7 +39,7 @@ class Permissions extends Model
 
     public static function permisosRol($id)
     {
-        $sql = "SELECT permisos.id, permisos.per_name FROM roles_permisos INNER JOIN roles ON roles_permisos.rol_id = roles.id INNER JOIN permisos ON roles_permisos.permiso_id = permisos.id WHERE roles.id = $id";
+        $sql = "SELECT permissions.id, permissions.per_name FROM roles_permisos INNER JOIN roles ON roles_permisos.rol_id = roles.id INNER JOIN permissions ON roles_permisos.permiso_id = permissions.id WHERE roles.id = $id";
 
         return self::querySimple($sql);
     }
