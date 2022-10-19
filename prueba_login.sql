@@ -3,7 +3,7 @@
 -- Versión del servidor: 5.7.34-log
 -- Versión de PHP: 8.1.9
 
-DROP TABLE IF EXISTS `roles_permisos`;
+DROP TABLE IF EXISTS `rol_permission`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `productos`;
 DROP TABLE IF EXISTS `roles`;
@@ -38,11 +38,11 @@ CREATE TABLE `permisos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `roles_permisos`
+-- Table structure for table `rol_permission`
 --
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `roles_permisos` (
+CREATE TABLE `rol_permission` (
   `permiso_id` int(11) NOT NULL,
   `rol_id` int(11) NOT NULL,
   KEY `fk_permisos` (`permiso_id`),
@@ -130,12 +130,12 @@ INSERT INTO `permisos` (`per_name`, `description`, `created_at`, `updated_at`) V
 UNLOCK TABLES;
 
 --
--- Dumping data for table `roles_permisos`
+-- Dumping data for table `rol_permission`
 --
 
-LOCK TABLES `roles_permisos` WRITE;
-/*!40000 ALTER TABLE `roles_permisos` DISABLE KEYS */;
-INSERT INTO `roles_permisos` (`permiso_id`, `rol_id`) VALUES
+LOCK TABLES `rol_permission` WRITE;
+/*!40000 ALTER TABLE `rol_permission` DISABLE KEYS */;
+INSERT INTO `rol_permission` (`permiso_id`, `rol_id`) VALUES
 (1, 1),
 (2, 1),
 (3, 1),
@@ -150,7 +150,7 @@ INSERT INTO `roles_permisos` (`permiso_id`, `rol_id`) VALUES
 (12, 1),
 (13, 1),
 (14, 1);
-/*!40000 ALTER TABLE `roles_permisos` ENABLE KEYS */;
+/*!40000 ALTER TABLE `rol_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

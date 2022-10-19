@@ -20,7 +20,7 @@
 
         <div class="row">
             <form class="px-3" action="<?= route('roles.permissions') ?>" method="post">
-
+                <?= csrf() ?>
                 <div class="form-group">
                     <label for="permisos">Permisos</label>
                     <div class="row">
