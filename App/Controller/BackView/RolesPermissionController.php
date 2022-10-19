@@ -29,6 +29,7 @@ class RolesPermissionController extends Controller
         $permissions = Permissions::select('id', 'per_name', 'description')->get();
 
         $rol = Roles::select('id', 'rol_name')->where('id', (int)$data->id)->get();
+        // dd($rol);
 
         return view('roles.permission', [
             'titulo' => 'control de permisos',

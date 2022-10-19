@@ -39,7 +39,7 @@ class Permissions extends Model
 
     public static function permisosRol($id)
     {
-        $sql = "SELECT permissions.id, permissions.per_name FROM rol_permission INNER JOIN roles ON rol_permission.rol_id = roles.id INNER JOIN permissions ON rol_permission.permiso_id = permissions.id WHERE roles.id = $id";
+        $sql = "SELECT permissions.id, permissions.per_name FROM rol_permission INNER JOIN roles ON rol_permission.rol_id = roles.id INNER JOIN permissions ON rol_permission.permission_id = permissions.id WHERE roles.id = $id";
 
         return self::querySimple($sql);
     }
@@ -51,13 +51,13 @@ class Permissions extends Model
         self::querySimple($sql);
 
         //query para insertar los permisos del rol
-        //INSERT INTO `rol_permission` (`permiso_id`, `rol_id`) VALUES ('1', '1'), ('6', '1'), ('2', '1'), ('3', '1');
-        $sql2 = "INSERT INTO `rol_permission` (`permiso_id`, `rol_id`) VALUES ";
+        //INSERT INTO `rol_permission` (`rol_id`, `permission_id`) VALUES ('1', '1'), ('1', '2'), ('1', '3');
+        $sql2 = "INSERT INTO `rol_permission` (`rol_id`, `permission_id`) VALUES ";
 
         $permisos = $data;
 
         foreach ($permisos as $key => $value) {
-            $sql2 .= "($value, $id),";
+            $sql2 .= "($id, $value),";
         }
 
         $sql2 = substr($sql2, 0, -1);
