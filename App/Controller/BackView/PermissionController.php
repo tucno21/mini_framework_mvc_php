@@ -57,7 +57,7 @@ class PermissionController extends Controller
 
             Permissions::create($data);
 
-            return redirect()->route('permissions');
+            return redirect()->route('permissions.index');
         }
     }
 
@@ -98,7 +98,7 @@ class PermissionController extends Controller
 
             Permissions::update($data->id, $data);
 
-            return redirect()->route('permissions');
+            return redirect()->route('permissions.index');
         }
     }
 
@@ -108,6 +108,6 @@ class PermissionController extends Controller
 
         Permissions::delete((int)$data->id);
 
-        return redirect()->route('permissions');
+        return redirect()->route('permissions.index');
     }
 }

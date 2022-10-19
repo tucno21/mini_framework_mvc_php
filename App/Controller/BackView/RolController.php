@@ -17,6 +17,7 @@ class RolController extends Controller
     public function index()
     {
         $roles = Roles::get();
+        // dd($roles);
 
         //cuando viene un solo objeto
         if (is_object($roles)) {
@@ -56,7 +57,7 @@ class RolController extends Controller
 
             Roles::create($data);
 
-            return redirect()->route('roles');
+            return redirect()->route('roles.index');
         }
     }
 
@@ -96,7 +97,7 @@ class RolController extends Controller
 
             Roles::update($data->id, $data);
 
-            return redirect()->route('roles');
+            return redirect()->route('roles.index');
         }
     }
 
@@ -106,6 +107,6 @@ class RolController extends Controller
 
         $result = Roles::delete((int)$data->id);
 
-        return redirect()->route('roles');
+        return redirect()->route('roles.index');
     }
 }

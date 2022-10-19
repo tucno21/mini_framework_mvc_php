@@ -63,7 +63,7 @@ class ProductoController extends Controller
 
             Productos::create($data);
 
-            return redirect()->route('products');
+            return redirect()->route('products.index');
         }
     }
 
@@ -108,7 +108,7 @@ class ProductoController extends Controller
 
             Productos::update($data->id, $data);
 
-            return redirect()->route('products');
+            return redirect()->route('products.index');
         }
     }
 
@@ -118,6 +118,6 @@ class ProductoController extends Controller
         // dd((int)$data->id);
         $result = Productos::delete((int)$data->id);
         // dd($result);
-        return redirect()->route('products');
+        return redirect()->route('products.index');
     }
 }

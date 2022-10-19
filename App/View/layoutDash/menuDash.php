@@ -24,44 +24,44 @@ $menuSession = [
 
 //CREACION DE ENLACES PARA EL MENU SIDEBAR
 $linksSidebar = [
-    can('dashboard') ?
+    can('dashboard.index') ?
         [
             'mode' => 'menu',
             'text' => 'Dashboard',
-            'url'  => route('dashboard'),
+            'url'  => route('dashboard.index'),
             'icon' => 'bi bi-speedometer2',
         ] : null,
-    can('users') || can('roles') ?
+    can('users.index') || can('roles.index') ?
         [
             'mode' => 'submenu',
             'text'    => 'Usuarios',
             'url'    => '#',
             'icon' => 'bi bi-person-lines-fill',
             'submenu' => [
-                can('users') ?
+                can('users.index') ?
                     [
                         'text' => 'Usuarios',
-                        'url'  => route('users'),
+                        'url'  => route('users.index'),
                         'icon' => 'fas fa-circle',
                     ] : null,
-                can('roles') ?
+                can('roles.index') ?
                     [
                         'text' => 'Roles',
-                        'url'  => route('roles'),
+                        'url'  => route('roles.index'),
                         'icon' => 'fas fa-circle',
                     ] : null,
                 [
                     'text' => 'Permisos',
-                    'url'  => route('permissions'),
+                    'url'  => route('permissions.index'),
                     'icon' => 'fas fa-circle',
                 ],
             ],
         ] : null,
-    can('products') ?
+    can('products.index') ?
         [
             'mode' => 'menu',
             'text' => 'Productos',
-            'url'  => route('products'),
+            'url'  => route('products.index'),
             'icon' => 'bi bi-shop',
         ] : null,
 ];

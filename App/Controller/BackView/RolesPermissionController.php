@@ -49,6 +49,6 @@ class RolesPermissionController extends Controller
 
         Permissions::sync((int)$data->rol_id, $permisos);
 
-        return redirect()->route('roles');
+        return redirect()->route('roles.index');
     }
 }

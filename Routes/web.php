@@ -28,10 +28,10 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 // BackView
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 //usuarios
-Route::get('/users', [UserController::class, 'index'])->name('users');
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users/create', [UserController::class, 'store']);
 Route::get('/users/edit', [UserController::class, 'edit'])->name('users.edit');
@@ -39,7 +39,7 @@ Route::post('/users/edit', [UserController::class, 'update']);
 Route::get('/users/destroy', [UserController::class, 'destroy'])->name('users.destroy');
 
 //roles
-Route::get('/roles', [RolController::class, 'index'])->name('roles');
+Route::get('/roles', [RolController::class, 'index'])->name('roles.index');
 Route::get('/roles/create', [RolController::class, 'create'])->name('roles.create');
 Route::post('/roles/create', [RolController::class, 'store']);
 Route::get('/roles/edit', [RolController::class, 'edit'])->name('roles.edit');
@@ -47,7 +47,7 @@ Route::post('/roles/edit', [RolController::class, 'update']);
 Route::get('/roles/destroy', [RolController::class, 'destroy'])->name('roles.destroy');
 
 //permisos
-Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');
+Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
 Route::get('/permissions/create', [PermissionController::class, 'create'])->name('permissions.create');
 Route::post('/permissions/create', [PermissionController::class, 'store']);
 Route::get('/permissions/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
@@ -59,7 +59,7 @@ Route::get('/roles/permissions', [RolesPermissionController::class, 'edit'])->na
 Route::post('/roles/permissions', [RolesPermissionController::class, 'update']);
 
 //productos
-Route::get('/products', [ProductoController::class, 'index'])->name('products');
+Route::get('/products', [ProductoController::class, 'index'])->name('products.index');
 Route::get('/products/create', [ProductoController::class, 'create'])->name('products.create');
 Route::post('/products/create', [ProductoController::class, 'store']);
 Route::get('/products/edit', [ProductoController::class, 'edit'])->name('products.edit');

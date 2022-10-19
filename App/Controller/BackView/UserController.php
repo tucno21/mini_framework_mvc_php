@@ -66,7 +66,7 @@ class UserController extends Controller
 
             Auth::create($data);
 
-            return redirect()->route('users');
+            return redirect()->route('users.index');
         }
     }
 
@@ -116,7 +116,7 @@ class UserController extends Controller
             // Auth::create($data);
             Auth::update($data->id, $data);
 
-            return redirect()->route('users');
+            return redirect()->route('users.index');
         }
     }
 
@@ -126,6 +126,6 @@ class UserController extends Controller
         // dd((int)$data->id);
         $result = Auth::delete((int)$data->id);
         // dd($result);
-        return redirect()->route('users');
+        return redirect()->route('users.index');
     }
 }
