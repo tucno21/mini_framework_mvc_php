@@ -41,7 +41,7 @@
     <?php endif; ?>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 border mt-3">
     <h5 class="font-14 mb-2">Estado</h5>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="status" id="status1" value="1" <?= isset($data->status) && $data->status == 1 ? 'checked' : '' ?>>
@@ -54,4 +54,3 @@
 </div>
 
 <input type="hidden" name="id" value="<?= isset($data->id) ? $data->id : '' ?> ">
-<?= csrf() ?>

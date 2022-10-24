@@ -1,40 +1,48 @@
 <?php include ext('layoutdash.head') ?>
-
-<div class="content">
-
-    <!-- Start Content-->
-    <div class="container-fluid">
-
-        <!-- start page title -->
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-box">
-                    <h4 class="page-title">Editar de Productos</h4>
+<div class="pcoded-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col d-flex flex-column flex-md-row justify-content-between align-items-center">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Editar Productos</h5>
+                    </div>
+                    <div class="">
+                        <button type="button" class="btn btn-primary btn-sm">Primary</button>
+                        <button type="button" class="btn btn-success btn-sm">Success</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- end page title -->
+    </div>
+    <!-- [ breadcrumb ] end -->
 
-
-        <!-- end row -->
-
-        <div class="row">
-            <form action="<?= route('products.edit') ?>" method="POST">
-                <div class="row g-3">
-
-                    <?php include_once 'imputs.php' ?>
-
-                    <div class="col-md-12">
-                        <button class="btn btn-lg btn-primary mt-3" type="submit">Editar Producto</button>
-                    </div>
+    <!-- [ Main Content ] start -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Completar los campos</h5>
                 </div>
-            </form>
+                <div class="card-body">
+                    <!-- <h5>Form controls</h5>
+                    <hr> -->
+                    <form action="<?= route('products.edit') ?>" method="POST">
+                        <?= csrf() ?>
+                        <div class="row g-2">
+
+                            <?php include_once 'imputs.php' ?>
+
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary" type="submit">Editar Producto</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <!-- end row -->
-
-
-    </div> <!-- container -->
-
-</div> <!-- content -->
-
+    </div>
+    <!-- [ Main Content ] end -->
+</div>
 <?php include ext('layoutdash.footer') ?>

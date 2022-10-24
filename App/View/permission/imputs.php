@@ -19,4 +19,3 @@
 
 
 <input type="hidden" name="id" value="<?= isset($data->id) ? $data->id : '' ?> ">
-<?= csrf() ?>

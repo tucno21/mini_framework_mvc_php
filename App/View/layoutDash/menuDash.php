@@ -1,14 +1,14 @@
 <?php
 
 // DATOS GENERALES ADMIN
-$title = 'ROLES';
-$titleShort = 'R';
+$title = 'Ventas';
+$titleShort = 'V';
 $mainLink = base_url('/dashboard');
 $logoAdmin = '../public/logo/logo.png';
 
 //DATOS DEL USUARIO ADMIN
 $userName = session()->user()->name;
-// dd(session()->user());
+
 
 
 //MENU CERRAR O PERFIL DE ADMINISTRADOR
@@ -72,12 +72,15 @@ $linksSidebar = [
 $linkURL = base_url;
 
 $linksCss = [
-    $linkURL . '/assets/css/default/bootstrap.min.css',
-    $linkURL . '/assets/css/default/app.min.css',
+    $linkURL . '/assets/css/style.css',
+    $linkURL . '/assets/css/customizer.css',
     $linkURL . '/assets/css/icon/bootstrap-icons.css',
 ];
 
 $linksScript = [
-    $linkURL . '/assets/js/vendor.min.js',
-    $linkURL . '/assets/js/app.min.js',
+    $linkURL . '/assets/js/popper.min.js',
+    $linkURL . '/assets/js/perfect-scrollbar.min.js',
+    $linkURL . '/assets/js/bootstrap.min.js',
+    $linkURL . '/assets/js/feather.min.js',
+    $linkURL . '/assets/js/pcoded.js',
 ];
