@@ -2,7 +2,7 @@
 
 namespace App\Controller\Auth;
 
-use App\Model\Auth;
+use App\Model\Users;
 use System\Controller;
 
 
@@ -36,7 +36,8 @@ class RegisterController extends Controller
             session()->remove('renderView');
             session()->remove('reserveRoute');
 
-            Auth::create($data);
+            $data->rol_id = 2;
+            Users::create($data);
 
             return redirect()->route('login');
         }
