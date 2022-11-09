@@ -3,7 +3,7 @@
 namespace App\Controller\BackView;
 
 use App\Model\Rol;
-use App\Model\Auth;
+use App\Model\Users;
 use System\Controller;
 
 class UserController extends Controller
@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         if (session()->user()->rol_name == 'Administrador') {
 
-            $users = Auth::select('users.id', 'users.email', 'users.name', 'users.status', 'roles.rol_name')
+            $users = Users::select('users.id', 'users.email', 'users.name', 'users.status', 'roles.rol_name')
                 ->join('roles', 'users.rol_id', '=', 'roles.id')
                 ->get();
 
@@ -67,7 +67,7 @@ class UserController extends Controller
             session()->remove('renderView');
             session()->remove('reserveRoute');
 
-            Auth::create($data);
+            Users::create($data);
 
             return redirect()->route('users');
         }
@@ -83,8 +83,8 @@ class UserController extends Controller
             if (empty((array)$id)) {
                 $user = null;
             } else {
-                // $user = Auth::first($id->id);
-                $user = Auth::select('id', 'name', 'email', 'status', 'rol_id')
+                // $user = Users::first($id->id);
+                $user = Users::select('id', 'name', 'email', 'status', 'rol_id')
                     ->where('id', $id->id)
                     ->get();
             }
@@ -120,8 +120,8 @@ class UserController extends Controller
             session()->remove('renderView');
             session()->remove('reserveRoute');
 
-            // Auth::create($data);
-            Auth::update($data->id, $data);
+            // Users::create($data);
+            Users::update($data->id, $data);
 
             return redirect()->route('users');
         }
@@ -131,7 +131,7 @@ class UserController extends Controller
     {
         $data = $this->request()->getInput();
         // dd((int)$data->id);
-        $result = Auth::delete((int)$data->id);
+        $result = Users::delete((int)$data->id);
         // dd($result);
         return redirect()->route('users');
     }
