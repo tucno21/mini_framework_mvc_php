@@ -2,7 +2,7 @@
 
 namespace App\Controller\Auth;
 
-use App\Model\Auth;
+use App\Model\Users;
 use System\Controller;
 
 
@@ -39,7 +39,7 @@ class RegisterController extends Controller
             $data->rol_id = 2;
             // dd($data);
 
-            Auth::create($data);
+            Users::create($data);
 
             return redirect()->route('login');
         }
