@@ -29,7 +29,7 @@
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
                         <table class="table table-striped">
-                            <thead>
+                            <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
