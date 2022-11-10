@@ -6053,19 +6053,19 @@ fieldset:disabled .btn {
 
 .modal {
     --bs-modal-zindex: 1055;
-    --bs-modal-width: 500px;
-    --bs-modal-padding: 1.25rem;
+    --bs-modal-width: 600px;
+    --bs-modal-padding: 1rem;
     --bs-modal-margin: 0.5rem;
     --bs-modal-color: ;
     --bs-modal-bg: #ffffff;
     --bs-modal-border-color: rgba(0, 0, 0, 0.2);
     --bs-modal-border-width: 1px;
-    --bs-modal-border-radius: 6px;
+    --bs-modal-border-radius: 0.3rem;
     --bs-modal-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
-    --bs-modal-inner-border-radius: 5px;
-    --bs-modal-header-padding-x: 1.5625rem;
-    --bs-modal-header-padding-y: 1.25rem;
-    --bs-modal-header-padding: 1.25rem 1.5625rem;
+    --bs-modal-inner-border-radius: 0.3rem;
+    --bs-modal-header-padding-x: 1rem;
+    --bs-modal-header-padding-y: 1rem;
+    --bs-modal-header-padding: 1rem 1rem;
     --bs-modal-header-border-color: #f1f1f1;
     --bs-modal-header-border-width: 1px;
     --bs-modal-title-line-height: 1.5;
@@ -19171,9 +19171,9 @@ body:not(.minimenu) .pc-sidebar .pc-submenu .pc-submenu .pc-submenu > .pc-item:b
     border-color: #d2d3d5;
 }
 
-.btn {
+/* .btn {
     font-size: 14px;
-}
+} */
 
 .btn i {
     font-size: 18px;
