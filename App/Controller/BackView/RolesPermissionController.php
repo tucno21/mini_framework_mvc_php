@@ -30,15 +30,21 @@ class RolesPermissionController extends Controller
 
         $rol = Roles::select('id', 'rol_name')->where('id', (int)$data->id)->get();
 
-        $group = ['dashboard' => 'Dashboard', 'users' => 'Usuarios', 'roles' => 'Roles', 'products' => 'Productos'];
+        $group = [
+            'dashboard' => 'Dashboard',
+            'users' => 'Usuarios',
+            'roles' => 'Roles',
+            'products' => 'Productos',
+        ];
 
-        foreach ($group as $g => $v) {
-            $permissionsGroup[$g] = [];
-            foreach ($permissions as $p) {
-                if (strpos($p->per_name, $g) !== false) {
-                    //agregar $v
-                    $p->title = $v;
-                    $permissionsGroup[$g][] = $p;
+        foreach ($group as $nameKey => $titleKey) {
+            $permissionsGroup[$nameKey] = [];
+            foreach ($permissions as $groupPermission) {
+                //strstr devuelve la parte de la cadena antes del primer punto
+                if (strstr($groupPermission->per_name, '.', true) == $nameKey) {
+                    //agregar $titleKey
+                    $groupPermission->title = $titleKey;
+                    $permissionsGroup[$nameKey][] = $groupPermission;
                 }
             }
         }

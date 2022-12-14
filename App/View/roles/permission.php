@@ -32,12 +32,12 @@
                         <div class="row">
                             <?= csrf() ?>
                             <?php foreach ($permissionsGroup as $g) : ?>
-                                <div class="col-md-3">
-                                    <div class="card h-80">
+                                <div class="col-md-3 mb-2">
+                                    <div class="card h-100 mb-2">
                                         <div class="card-header p-2">
                                             <h5 class="card-title m-0"><?= ucfirst($g[0]->title) ?></h5>
                                         </div>
-                                        <div class="card-body p-2">
+                                        <div class="card-body py-2 pb-0">
                                             <?php foreach ($g as $p) : ?>
                                                 <div class="form-check">
                                                     <input class="form-check-input" id="<?= $p->id ?>" type="checkbox" name="<?= $p->per_name ?>" value="<?= $p->id ?>" id="<?= $p->id ?>" <?= in_array($p->per_name, array_column((array)$permisosRol, 'per_name')) ? 'checked' : '' ?>>
